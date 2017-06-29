@@ -169,6 +169,7 @@ return [
 
         Laravel\Tinker\TinkerServiceProvider::class,
 	TCG\Voyager\VoyagerServiceProvider::class,
+	Cviebrock\EloquentSluggable\ServiceProvider::class,
 
         /*
          * Application Service Providers...
