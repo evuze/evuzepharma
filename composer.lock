@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1029745fa6e2090236a5991e3c04f1b2",
+    "content-hash": "34708e7c985c57316e1cf0b58ca3f0ee",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -729,6 +729,75 @@
             "time": "2017-03-29T16:04:15+00:00"
         },
         {
+            "name": "graham-campbell/exceptions",
+            "version": "v9.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GrahamCampbell/Laravel-Exceptions.git",
+                "reference": "b2001ce4e992ca473af6f470cddfcf6e0a83430d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Exceptions/zipball/b2001ce4e992ca473af6f470cddfcf6e0a83430d",
+                "reference": "b2001ce4e992ca473af6f470cddfcf6e0a83430d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.1.*|5.2.*|5.3.*|5.4.*",
+                "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*",
+                "paragonie/random_compat": "^1.1|^2.0",
+                "php": ">=5.5.9",
+                "psr/log": "^1.0",
+                "symfony/debug": "^2.7|^3.0",
+                "symfony/http-foundation": "^2.7|^3.0"
+            },
+            "require-dev": {
+                "filp/whoops": "^1.1|^2.0",
+                "graham-campbell/testbench": "^3.1",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.8|^5.0"
+            },
+            "suggest": {
+                "filp/whoops": "Enables use of the debug displayer."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "9.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GrahamCampbell\\Exceptions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com"
+                }
+            ],
+            "description": "Provides A Powerful Error Response System For Both Development And Production",
+            "keywords": [
+                "Graham Campbell",
+                "GrahamCampbell",
+                "Laravel Exceptions",
+                "Laravel-Exceptions",
+                "error",
+                "errors",
+                "exception",
+                "exceptions",
+                "framework",
+                "laravel",
+                "whoops"
+            ],
+            "time": "2017-01-21T16:49:20+00:00"
+        },
+        {
             "name": "guzzlehttp/psr7",
             "version": "1.4.2",
             "source": {
@@ -1439,16 +1508,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.0.5",
+            "version": "v3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "2b9e2f71b722f7c53918ab0c25f7646c2013f17d"
+                "reference": "0808939f81c1347a3c8a82a5925385a08074b0f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/2b9e2f71b722f7c53918ab0c25f7646c2013f17d",
-                "reference": "2b9e2f71b722f7c53918ab0c25f7646c2013f17d",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/0808939f81c1347a3c8a82a5925385a08074b0f1",
+                "reference": "0808939f81c1347a3c8a82a5925385a08074b0f1",
                 "shasum": ""
             },
             "require": {
@@ -1486,7 +1555,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-03-05T18:23:57+00:00"
+            "time": "2017-06-28T20:53:48+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2743,6 +2812,43 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
+        },
+        {
+            "name": "whoops/soap",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/whoops-php/soap.git",
+                "reference": "3a20e2b037bc49ff7f909db2694740ceb1b1be50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/whoops-php/soap/zipball/3a20e2b037bc49ff7f909db2694740ceb1b1be50",
+                "reference": "3a20e2b037bc49ff7f909db2694740ceb1b1be50",
+                "shasum": ""
+            },
+            "require-dev": {
+                "filp/whoops": "^2.0-dev",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\Handler\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Markus Staab",
+                    "email": "maggus.staab@googlemail.com"
+                }
+            ],
+            "description": "Soap handler for Whoops",
+            "time": "2015-11-23T20:11:17+00:00"
         }
     ],
     "packages-dev": [
@@ -2799,6 +2905,67 @@
                 "instantiate"
             ],
             "time": "2015-06-14T21:17:01+00:00"
+        },
+        {
+            "name": "filp/whoops",
+            "version": "2.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "b238974e1c7cc1859b0c16ddc1c02ecb70ecc07f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/b238974e1c7cc1859b0c16ddc1c02ecb70ecc07f",
+                "reference": "b238974e1c7cc1859b0c16ddc1c02ecb70ecc07f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9 || ^7.0",
+                "psr/log": "^1.0.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "^4.8 || ^5.0",
+                "symfony/var-dumper": "^2.6 || ^3.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "whoops",
+                "zf2"
+            ],
+            "time": "2017-06-03T18:33:07+00:00"
         },
         {
             "name": "fzaninotto/faker",
