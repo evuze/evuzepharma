@@ -25,15 +25,10 @@ class PermissionsTableSeeder extends Seeder
         }
 
         Permission::generateFor('menus');
-
-        Permission::generateFor('pages');
-
         Permission::generateFor('roles');
-
         Permission::generateFor('users');
+        Permission::generateFor('owners');
+        Permission::generateFor('pharmacies');
 
-        Permission::generateFor('posts');
-
-        Permission::generateFor('categories');
     }
 }

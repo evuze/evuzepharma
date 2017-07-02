@@ -10,29 +10,31 @@ class DataTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        $dataType = $this->dataType('slug', 'posts');
+        $dataType = $this->dataType('slug', 'owners');
         if (!$dataType->exists) {
             $dataType->fill([
-                'name'                  => 'posts',
-                'display_name_singular' => 'Post',
-                'display_name_plural'   => 'Posts',
-                'icon'                  => 'voyager-news',
-                'model_name'            => 'TCG\\Voyager\\Models\\Post',
+                'name'                  => 'owners',
+                'display_name_singular' => 'Owner',
+                'display_name_plural'   => 'Owners',
+                'icon'                  => 'voyager-certificate',
+                'model_name'            => 'App\\Owner',
+//                'controller'            => 'App\\Http\\Controllers\\OwnersController',
                 'controller'            => '',
                 'generate_permissions'  => 1,
                 'description'           => '',
             ])->save();
         }
 
-        $dataType = $this->dataType('slug', 'pages');
+        $dataType = $this->dataType('slug', 'pharmacies');
         if (!$dataType->exists) {
             $dataType->fill([
-                'name'                  => 'pages',
-                'display_name_singular' => 'Page',
-                'display_name_plural'   => 'Pages',
-                'icon'                  => 'voyager-file-text',
-                'model_name'            => 'TCG\\Voyager\\Models\\Page',
+                'name'                  => 'pharmacies',
+                'display_name_singular' => 'Pharmacy',
+                'display_name_plural'   => 'Pharmacies',
+                'icon'                  => 'voyager-droplet',
+                'model_name'            => 'App\\Pharmacy',
                 'controller'            => '',
+//                'controller'            => 'App\\Http\\Controllers\\PharmaciesController',
                 'generate_permissions'  => 1,
                 'description'           => '',
             ])->save();
@@ -45,22 +47,9 @@ class DataTypesTableSeeder extends Seeder
                 'display_name_singular' => 'User',
                 'display_name_plural'   => 'Users',
                 'icon'                  => 'voyager-person',
-                'model_name'            => 'TCG\\Voyager\\Models\\User',
+                'model_name'            => 'App\\User',
                 'controller'            => '',
-                'generate_permissions'  => 1,
-                'description'           => '',
-            ])->save();
-        }
-
-        $dataType = $this->dataType('name', 'categories');
-        if (!$dataType->exists) {
-            $dataType->fill([
-                'slug'                  => 'categories',
-                'display_name_singular' => 'Category',
-                'display_name_plural'   => 'Categories',
-                'icon'                  => 'voyager-categories',
-                'model_name'            => 'TCG\\Voyager\\Models\\Category',
-                'controller'            => '',
+//                'controller'            => 'App\\Http\\Controllers\\UsersController',
                 'generate_permissions'  => 1,
                 'description'           => '',
             ])->save();

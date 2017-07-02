@@ -3,9 +3,9 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use TCG\Voyager\Models\User as VoyagerUserModel;
 
-class User extends Authenticatable
+class User extends VoyagerUserModel
 {
     use Notifiable;
 
@@ -23,7 +23,17 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /*
+     * Pharmacy that user belongs to
+     */
+
+    public function pharmacyId()
+    {
+        return $this->belongsTo(Pharmacy::class);
+    }
 }

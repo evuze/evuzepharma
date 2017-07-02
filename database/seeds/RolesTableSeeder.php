@@ -17,11 +17,21 @@ class RolesTableSeeder extends Seeder
                 ])->save();
         }
 
+        $role = Role::firstOrNew(['name' => 'owner']);
+        if (!$role->exists) {
+            $role->fill([
+                'display_name' => 'Owner',
+            ])->save();
+        }
+
         $role = Role::firstOrNew(['name' => 'user']);
         if (!$role->exists) {
             $role->fill([
                     'display_name' => 'Normal User',
                 ])->save();
         }
+
+
+
     }
 }

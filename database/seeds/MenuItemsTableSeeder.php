@@ -35,31 +35,31 @@ class MenuItemsTableSeeder extends Seeder
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
-                'title'      => 'Media',
-                'url'        => route('voyager.media.index', [], false),
+                'title'      => 'Owners',
+                'url'        => route('voyager.owners.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
                     'target'     => '_self',
-                    'icon_class' => 'voyager-images',
+                    'icon_class' => 'voyager-certificate',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 5,
+                    'order'      => 6,
                 ])->save();
             }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
-                'title'      => 'Posts',
-                'url'        => route('voyager.posts.index', [], false),
+                'title'      => 'Pharmacies',
+                'url'        => route('voyager.pharmacies.index', [], false),
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
                     'target'     => '_self',
-                    'icon_class' => 'voyager-news',
+                    'icon_class' => 'voyager-droplet',
                     'color'      => null,
                     'parent_id'  => null,
-                    'order'      => 6,
+                    'order'      => 7,
                 ])->save();
             }
 
@@ -75,36 +75,6 @@ class MenuItemsTableSeeder extends Seeder
                     'color'      => null,
                     'parent_id'  => null,
                     'order'      => 3,
-                ])->save();
-            }
-
-            $menuItem = MenuItem::firstOrNew([
-                'menu_id'    => $menu->id,
-                'title'      => 'Categories',
-                'url'        => route('voyager.categories.index', [], false),
-            ]);
-            if (!$menuItem->exists) {
-                $menuItem->fill([
-                    'target'     => '_self',
-                    'icon_class' => 'voyager-categories',
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 8,
-                ])->save();
-            }
-
-            $menuItem = MenuItem::firstOrNew([
-                'menu_id'    => $menu->id,
-                'title'      => 'Pages',
-                'url'        => route('voyager.pages.index', [], false),
-            ]);
-            if (!$menuItem->exists) {
-                $menuItem->fill([
-                    'target'     => '_self',
-                    'icon_class' => 'voyager-file-text',
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 7,
                 ])->save();
             }
 
