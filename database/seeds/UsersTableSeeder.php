@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\Role;
-use TCG\Voyager\Models\User;
+use App\User;
+use App\Owner;
 
 class UsersTableSeeder extends Seeder
 {
@@ -30,14 +31,23 @@ class UsersTableSeeder extends Seeder
              *   Pharmacy Owner Placeholder Account
              */
 
-            $role = Role::where('name', 'owner')->firstOrFail();
-            User::create([
+            Owner::create([
                 'name'           => 'John Doe',
                 'email'          => 'john.doe@admin.com',
                 'password'       => bcrypt('password'),
-                'remember_token' => str_random(60),
-                'role_id'        => $role->id,
             ]);
+
+//            $role = Role::where('name', 'owner')->firstOrFail();
+//            User::create([
+//                'name'           => 'John Doe',
+//                'email'          => 'john.doe@admin.com',
+//                'password'       => bcrypt('password'),
+//                'remember_token' => str_random(60),
+//                'role_id'        => $role->id,
+//            ]);
+
+
+
         }
     }
 }

@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController;
 use TCG\Voyager\Facades\Voyager;
-
+use App\Employee;
 use App\Pharmacy;
 use Auth;
 
-class PharmaciesController extends VoyagerBreadController
+class EmployeesController extends VoyagerBreadController
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,17 @@ class PharmaciesController extends VoyagerBreadController
 
         $slug = $this->getSlug($request);
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
-        $get = Pharmacy::where('user_id', Auth::user()->id);
+
+        $getp = Pharmacy::where('user_id', Auth::user()->id)->get();
+        $get = [];
+        if( $getp ){
+            foreach ($getp as $p) {
+                $get[] = $p->id;
+            }
+        }
+
+        $get = Employee::whereIn('pharmacy_id', $getp);
+
         $dataTypeContent = $get->get();
 
         $view = 'voyager::bread.browse';
