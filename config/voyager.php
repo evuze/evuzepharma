@@ -191,7 +191,7 @@ return [
         ],
 
         'widgets' => [
-            'TCG\\Voyager\\Widgets\\UserDimmer',
+            'App\\Widgets\\UserDimmer',
 //            'TCG\\Voyager\\Widgets\\PostDimmer',
 //            'TCG\\Voyager\\Widgets\\PageDimmer',
         ],

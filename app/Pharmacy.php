@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
 use Kblais\Uuid\Uuid;
 
 class Pharmacy extends BaseModel
@@ -11,13 +12,24 @@ class Pharmacy extends BaseModel
 
 //    protected $uuid_version = 1;
 
-    public function users()
+    public function save(array $options = [])
     {
-        return $this->hasMany(User::class);
+        if ( Auth::check() && Auth::user()->hasRole('owner') ){
+            // Forcing owner id to Pharmacy
+            $this->user_id = Auth::user()->id;
+        }
+
+        parent::save();
     }
 
-    public function ownerId()
+    public function employees()
     {
-        return $this->belongsTo(Owner::class);
+        return $this->hasMany(Employee::class);
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

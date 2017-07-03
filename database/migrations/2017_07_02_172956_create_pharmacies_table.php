@@ -17,14 +17,14 @@ class CreatePharmaciesTable extends Migration
             $table->uuid('id');
 
             $table->string("name");
-            $table->integer("owner_id")->unsigned();
+            $table->unsignedInteger("user_id")->nullable();
 
             $table->string("logo");
             $table->string("watermark")->nullable();
             $table->string("location");
 
             $table->primary('id');
-            $table->foreign("owner_id")->references('id')->on('owners')->onDelete('cascade');
+//            $table->foreign("owner_id")->references('id')->on('owners')->onDelete('cascade');
 
             $table->timestamps();
         });

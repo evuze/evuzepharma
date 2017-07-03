@@ -15,7 +15,7 @@ class User extends VoyagerUserModel
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role_id'
     ];
 
     /**
@@ -32,8 +32,8 @@ class User extends VoyagerUserModel
      * Pharmacy that user belongs to
      */
 
-    public function pharmacyId()
+    public function pharmacies()
     {
-        return $this->belongsTo(Pharmacy::class);
+        return $this->hasMany(Pharmacy::class);
     }
 }
