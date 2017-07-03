@@ -23,7 +23,11 @@ class EmployeesController extends VoyagerBreadController
         $slug = $this->getSlug($request);
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
+        // Check permission
+        Voyager::canOrFail('browse_'.$dataType->name);
+
         $getp = Pharmacy::where('user_id', Auth::user()->id)->get();
+
         $get = [];
         if( $getp ){
             foreach ($getp as $p) {
@@ -31,7 +35,9 @@ class EmployeesController extends VoyagerBreadController
             }
         }
 
-        $get = Employee::whereIn('pharmacy_id', $getp);
+        $relationships = $this->getRelationships($dataType);
+        $get = Employee::whereIn('pharmacy_id', $getp)->orderBy('name', "ASC")->with($relationships);
+
 
         $dataTypeContent = $get->get();
 

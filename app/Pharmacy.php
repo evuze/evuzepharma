@@ -24,7 +24,8 @@ class Pharmacy extends BaseModel
 
     public function employees()
     {
-        return $this->hasMany(Employee::class);
+        return $this->hasMany(Employee::class, 'id', 'pharmacy_id')
+                    ->orderBy('name', 'ASC');
     }
 
 

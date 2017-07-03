@@ -122,7 +122,11 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 1,
-                'details'      => '',
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  'required'
+                    ],
+                ]),
                 'order'        => 3,
             ])->save();
         }
@@ -138,7 +142,11 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 0,
                 'add'          => 0,
                 'delete'       => 1,
-                'details'      => '',
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  'required'
+                    ],
+                ]),
                 'order'        => 2,
             ])->save();
         }
@@ -154,7 +162,11 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 1,
-                'details'      => '',
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  'required'
+                    ],
+                ]),
                 'order'        => 4,
             ])->save();
         }
@@ -186,7 +198,11 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 1,
-                'details'      => '',
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  'required'
+                    ],
+                ]),
                 'order'        => 6,
             ])->save();
         }
@@ -254,7 +270,11 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 1,
-                'details'      => '',
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  'required'
+                    ],
+                ]),
                 'order'        => 2,
             ])->save();
         }
@@ -270,7 +290,11 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 1,
-                'details'      => '',
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  'required|email|unique:users,email'
+                    ],
+                ]),
                 'order'        => 3,
             ])->save();
         }
@@ -561,6 +585,9 @@ class DataRowsTableSeeder extends Seeder
                         'key'   => 'id',
                         'label' => 'name',
                     ],
+                    'validation'    =>  [
+                        'rule'  =>  'required'
+                    ],
                 ]),
                 'order'        => 1,
             ])->save();
@@ -570,14 +597,18 @@ class DataRowsTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'text',
-                'display_name' => 'name',
+                'display_name' => 'Employee\'s Names',
                 'required'     => 1,
                 'browse'       => 1,
                 'read'         => 1,
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 1,
-                'details'      => '',
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  'required|string'
+                    ],
+                ]),
                 'order'        => 2,
             ])->save();
         }
@@ -586,14 +617,18 @@ class DataRowsTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'text',
-                'display_name' => 'email',
+                'display_name' => 'Employee\'s Email',
                 'required'     => 1,
                 'browse'       => 1,
                 'read'         => 1,
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 1,
-                'details'      => '',
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  'required|email|unique:employees,email'
+                    ],
+                ]),
                 'order'        => 3,
             ])->save();
         }
@@ -609,7 +644,12 @@ class DataRowsTableSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 0,
-                'details'      => '',
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  'required|min:8',
+                        'message'   =>  'The password must be over 8 characters'
+                    ],
+                ]),
                 'order'        => 4,
             ])->save();
         }

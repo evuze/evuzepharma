@@ -11,6 +11,8 @@ class Employee extends AuthUser
     /**
      * Override all method
      * @override all()
+     * @param array $columns
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
 
     public static function all($columns = [])
@@ -20,11 +22,19 @@ class Employee extends AuthUser
         $user = Auth::check();
         if ( $user ){
             if( $user->hasRole('owner') ){
-                $resp = self::where('owner_id', Auth::user()->id);
+                $getP = Pharmacy::where('user_id', Auth::user()->id)->get();
+                $get = [];
+                if( $getP ){
+                    foreach ($getP as $p) {
+                        $get[] = $p->id;
+                    }
+                }
+
+                $resp = self::whereIn('pharmacy_id', $getP);
             }
         }
 
-        return$resp;
+        return $resp;
     }
 
     public function save(array $options = [])
@@ -39,7 +49,6 @@ class Employee extends AuthUser
     {
         return $this->belongsTo(Pharmacy::class);
     }
-
 
 
 }
