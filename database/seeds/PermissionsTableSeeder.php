@@ -30,6 +30,7 @@ class PermissionsTableSeeder extends Seeder
         Permission::generateFor('owners');
         Permission::generateFor('pharmacies');
         Permission::generateFor('employees');
+        Permission::generateFor('drags');
 
     }
 }

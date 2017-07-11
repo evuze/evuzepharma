@@ -17,7 +17,7 @@ class DataRowsTableSeeder extends Seeder
         $pharmacyDataType = DataType::where('slug', 'pharmacies')->firstOrFail();
         $ownerDataType = DataType::where('slug', "owners")->firstOrFail();
         $employeeDataType = DataType::where('slug', "employees")->firstOrFail();
-
+        $dragDataType = DataType::where('slug', "drags")->firstOrFail();
 
         /**
          * DataRow for Owners Table
@@ -717,7 +717,112 @@ class DataRowsTableSeeder extends Seeder
                 'order'        => 8,
             ])->save();
         }
+        /**
+         *  DataRows for Drugs DataType
+         */
 
+        $dataRow = $this->dataRow($dragDataType, 'id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'id',
+                'required'     => 1,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 1,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($dragDataType, 'full_name');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Full Name',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  "required|unique:drags,full_name"
+                    ]
+                ]),
+                'order'        => 2,
+            ])->save();
+        }
+        $dataRow = $this->dataRow($dragDataType, 'short_name');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Short Name',
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'  =>  "min:2|max:7|unique:drags,short_name"
+                    ]
+                ]),
+                'order'        => 3,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($dragDataType, 'details');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text_area',
+                'display_name' => 'Details',
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => '',
+                'order'        => 4,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($dragDataType, 'created_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'created_at',
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 5,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($dragDataType, 'updated_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'updated_at',
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 6,
+            ])->save();
+        }
     }
 
     /**

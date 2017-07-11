@@ -55,6 +55,22 @@ class DataTypesTableSeeder extends Seeder
             ])->save();
         }
 
+
+        $dataType = $this->dataType('slug', 'drags');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'drags',
+                'display_name_singular' => 'Drag',
+                'display_name_plural'   => 'Drags',
+                'icon'                  => 'voyager-leaf',
+                'model_name'            => 'App\\Drag',
+                'controller'            => '',
+//                'controller'            => '\\App\\Http\\Controllers\\DragsController',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
         $dataType = $this->dataType('slug', 'users');
         if (!$dataType->exists) {
             $dataType->fill([
