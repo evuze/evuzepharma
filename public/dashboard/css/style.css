@@ -1,48 +1,4 @@
-/*
-Template Name: Velonic Dashboard build with Bootstrap v3.3.6
-Template Version: 2.2
-Author: CoderThemes
-Email: coderthemes@gmail.com
-Date: Jan 2015
-Last Update: Jan 2016
-*/
-
-
-
-/* TABLE OF CONTENTS
-    1) General
-        1.1 Loader
-    2) Left Panel
-        2.1 Logo
-        2.2 Navigation
-        2.3 Sub-menu
-    3) Top Header
-    4) Content Area
-    5) Footer
-    6) Panel-Tab-Accordions
-    7) Portlets
-    8) Widgets
-    9) Chat / Todo
-   10) Calendar
-   11) Forms
-       11.1 Form wizard
-   12) Datatable
-   13) Chart
-   14) Mail
-   15) Maps
-   16) Profile
-   17) Timeline
-   18) Pages (Log-in,Register Etc....)
-
-   ======= Version 1.1 ======
-   19) Flot-chart / Rickshaw
-
-
-   ====== Version 2.0 =====
-   - Responsive
-
-*/
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
 
 /******** 1. General ********/
 body {
@@ -141,8 +97,9 @@ html {
 
 /******** 2. Left Panel (aside navigation) ********/
 aside.left-panel {
-  background-color: #2f353f;
+  background-color: #f1f4f5; /* patching sidebar
   box-shadow: 7px 60px 12px rgba(0, 0, 0, 0.15);
+  */
   width: 250px;
   position: fixed;
   height: 100%;

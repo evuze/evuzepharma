@@ -23,7 +23,7 @@ a{
 }
 a:hover,a:focus{
     color: #2A3542;
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 ul, ol {
