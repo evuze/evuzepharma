@@ -17,7 +17,7 @@ class DataRowsTableSeeder extends Seeder
         $pharmacyDataType = DataType::where('slug', 'pharmacies')->firstOrFail();
         $ownerDataType = DataType::where('slug', "owners")->firstOrFail();
         $employeeDataType = DataType::where('slug', "employees")->firstOrFail();
-        $dragDataType = DataType::where('slug', "drags")->firstOrFail();
+        $dragDataType = DataType::where('slug', "drugs")->firstOrFail();
 
         /**
          * DataRow for Owners Table

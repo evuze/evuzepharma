@@ -56,12 +56,12 @@ class DataTypesTableSeeder extends Seeder
         }
 
 
-        $dataType = $this->dataType('slug', 'drags');
+        $dataType = $this->dataType('slug', 'drugs');
         if (!$dataType->exists) {
             $dataType->fill([
-                'name'                  => 'drags',
-                'display_name_singular' => 'Drag',
-                'display_name_plural'   => 'Drags',
+                'name'                  => 'drugs',
+                'display_name_singular' => 'Drug',
+                'display_name_plural'   => 'Drugs',
                 'icon'                  => 'voyager-leaf',
                 'model_name'            => 'App\\Drag',
                 'controller'            => '',
