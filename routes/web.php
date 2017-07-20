@@ -11,14 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('admin/login');
-});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('pharmacy',function(){
-	return view('dashboard.test');
+Route::get('/', "Auth\\PharmacyController@showLoginForm");
+Route::get('/login', "Auth\\PharmacyController@showLoginForm");
+Route::get('/pharmacy/login',"Auth\\PharmacyController@showLoginForm")->name('pharmacy.get.login');
+Route::post('/pharmacy/login', "Auth\\PharmacyController@login")->name('pharmacy.post.login');
+
+Route::get('/test',function (){
+    dd(auth()->guard('pharmacy')->check());
+});
+
+Route::group(['middleware' => 'pharmacy.auth', 'prefix' => 'pharmacy'], function (){
+
+    Route::any('/logout', 'Auth\\PharmacyController@logout')->name('pharmacy.logout');
+
+    Route::get('/', "PharmacistController@dashboard");
+    Route::get('/dashboard', "PharmacistController@dashboard")->name('pharmacy.dashboard');
+
 });

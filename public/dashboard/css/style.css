@@ -1751,7 +1751,7 @@ ul.p-social-link li a {
 }
 
 .slider-bg {
-  background: url(../img/album/img-1.jpg) center;
+  background: url(/img/album/img-1.jpg) center;
   background-size: cover;
   position: relative;
 }

@@ -32,8 +32,13 @@
             <div class="panel panel-color panel-primary">
                 <div class="panel-heading"> 
                    <h3 class="text-center m-t-10"> Sign In to <strong>{{ Voyager::setting('admin_title', 'e-vuze pharmacy') }}</strong> </h3>
-                </div> 
-                <form  class="form-horizontal m-t-40" action="{{ route('voyager.login') }}" method="POST">
+                </div>
+                @if(isset($pharmacy))
+                    @php($action = route('pharmacy.post.login'))
+                @else
+                    @php($action = route('voyager.login'))
+                @endif
+                <form  class="form-horizontal m-t-40" action="{{ $action  }}" method="POST">
                  {{ csrf_field() }}
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -48,19 +53,26 @@
 
                     @if(!$errors->isEmpty())
                     <div class="alert alert-black">
-                    <ul class="list-unstyled">
-                    @foreach($errors->all() as $err)
-                    <li>{{ $err }}</li>
-                    @endforeach                
-                    </ul>
+                        <ul class="list-unstyled">
+                            @foreach($errors->all() as $err)
+                                <li>{{ $err }}</li>
+                            @endforeach
+                        </ul>
                     </div>            
                     @endif
                     <div class="form-group text-right">
                         <div class="col-xs-12">
-                        <button type="submit" class="btn btn-block login-button">
-                        <span class="signingin hidden"><span class="glyphicon glyphicon-refresh"></span> Loggin in...</span>
-                        <span class="signin">Login</span>
-                        </button>
+                            <button type="submit" class="btn btn-block login-button">
+                                <span class="signingin hidden"><span class="glyphicon glyphicon-refresh"></span> Loggin in...</span>
+                                <span class="signin">Login</span>
+                            </button>
+                        </div>
+                        <div class="col-xs-12">
+                            @if(isset($pharmacy))
+                                <a href="{{ url('/admin') }}" class="btn btn-animate btn-link text-xs m-t-15"><i>I have pharmacy</i></a>
+                            @else
+                                <a href="{{ url(route('pharmacy.get.login')) }}" class="btn btn-animate btn-link text-xs m-t-15"><i>Pharmacist Portal</i></a>
+                            @endif
                         </div>
                     </div>
                 </form>

@@ -2,11 +2,17 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as AuthUser;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Employee extends AuthUser
+class Employee extends Authenticatable
 {
+
+    use Notifiable;
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
     /**
      * Override all method
@@ -50,5 +56,9 @@ class Employee extends AuthUser
         return $this->belongsTo(Pharmacy::class);
     }
 
+    public function pharmacy()
+    {
+        return $this->belongsTo(Pharmacy::class);
+    }
 
 }

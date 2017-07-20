@@ -40,7 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
+        'pharmacy' => [
+            'driver' => 'session',
+            'provider' => 'pharmacists',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -69,7 +72,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        'pharmacists' => [
+            'driver' => 'eloquent',
+            'model' => App\Employee::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

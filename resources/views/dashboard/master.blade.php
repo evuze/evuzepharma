@@ -65,6 +65,7 @@
 <!-- Left navbar -->
 <nav class=" navbar-default" role="navigation">
 <ul class="nav navbar-nav hidden-xs">
+    <li><a href="{{ route('pharmacy.dashboard') }}">{{ ucfirst($user->pharmacy->name) }}</a> </li>
  @if(count(Request::segments()) == 1)
     <li><a href="{{route('voyager.dashboard', [], false)}}"> Dashboard </a></li>
 @else
@@ -129,15 +130,14 @@
 
 <!-- user login dropdown start-->
 <li class="dropdown text-center">
-<a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-<img alt="" src="img/avatar-2.jpg" class="img-circle profile-img thumb-sm">
-<span class="username">{{Auth::user()->name}} </span> <span class="caret"></span>
+<a data-toggle="dropdown" class="dropdown-toggle" href="">
+<img alt="" src="{{ Voyager::image($user->avatar) }}" class="img-circle profile-img thumb-sm">
+<span class="username">{{ $user->email }} </span> <span class="caret"></span>
 </a>
 <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
-<li><a href="index.html#"><i class="fa fa-home"></i> home</a></li>
-<li><a href="index.html#"><i class="fa fa-user"></i> Profile</a></li>
+<li><a href=""><i class="fa fa-user"></i> Profile</a></li>
 <li>
-<form action="{{ route('voyager.logout') }}" method="POST">
+<form action="{{ route('pharmacy.logout') }}" method="POST">
         {{ csrf_field() }}
         <button type="submit" class="btn btn-success btn-block">
         <i class="fa fa-sign-out"></i>
@@ -160,145 +160,7 @@
 <!-- ================== -->
 
 <div class="wraper container-fluid">
-<div class="page-title"> 
-<h3 class="title">Welcome !</h3> 
-</div>
-
-<div class="row">
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-pink">
-        <i class="fa fa-comments-o"></i> 
-        <h2 class="m-0 counter text-white">50</h2>
-        <div class="text-white">Sales</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-warning">
-        <i class="fa fa-usd"></i> 
-        <h2 class="m-0 counter text-white">12056</h2>
-        <div class="text-white">Products</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-info">
-        <i class="fa fa-shopping-cart"></i> 
-        <h2 class="m-0 counter text-white">1268</h2>
-        <div class="text-white">Purchase</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-success">
-        <i class="fa fa-user"></i> 
-        <h2 class="m-0 counter text-white">145</h2>
-        <div class="text-white">Suppliers</div>
-    </div>
-</div>
-</div> <!-- End row -->
-
-<div class="row">
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-pink">
-        <i class="fa fa-comments-o"></i> 
-        <h2 class="m-0 counter text-white">50</h2>
-        <div class="text-white">Store Reports</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-warning">
-        <i class="fa fa-usd"></i> 
-        <h2 class="m-0 counter text-white">12056</h2>
-        <div class="text-white">Expenses</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-info">
-        <i class="fa fa-shopping-cart"></i> 
-        <h2 class="m-0 counter text-white">1268</h2>
-        <div class="text-white">New Orders</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-success">
-        <i class="fa fa-user"></i> 
-        <h2 class="m-0 counter text-white">145</h2>
-        <div class="text-white">Purchase Report</div>
-    </div>
-</div>
-</div> <!-- End row -->
-<div class="row">
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-pink">
-        <i class="fa fa-comments-o"></i> 
-        <h2 class="m-0 counter text-white">50</h2>
-        <div class="text-white">Insurance reports</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-warning">
-        <i class="fa fa-usd"></i> 
-        <h2 class="m-0 counter text-white">12056</h2>
-        <div class="text-white">Sales Detail</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-info">
-        <i class="fa fa-shopping-cart"></i> 
-        <h2 class="m-0 counter text-white">1268</h2>
-        <div class="text-white">Insurance Price</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-success">
-        <i class="fa fa-user"></i> 
-        <h2 class="m-0 counter text-white">145</h2>
-        <div class="text-white">Insurance Details</div>
-    </div>
-</div>
-</div> <!-- End row -->
-
-<div class="row">
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-pink">
-        <i class="fa fa-comments-o"></i> 
-        <h2 class="m-0 counter text-white">50</h2>
-        <div class="text-white">Purchase Details</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-warning">
-        <i class="fa fa-usd"></i> 
-        <h2 class="m-0 counter text-white">12056</h2>
-        <div class="text-white">Insurance Sales Details</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-info">
-        <i class="fa fa-shopping-cart"></i> 
-        <h2 class="m-0 counter text-white">45</h2>
-        <div class="text-white">Insurance Pending</div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6">
-    <div class="widget-panel widget-style-1 bg-success">
-        <i class="fa fa-user"></i> 
-        <h2 class="m-0 counter text-white">145</h2>
-        <div class="text-white">Expenses</div>
-    </div>
-</div>
-</div> <!-- End row -->
-
+@yield('content')
 </div>
 <!-- Page Content Ends -->
 <!-- ================== -->
