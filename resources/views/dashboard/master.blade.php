@@ -18,6 +18,8 @@
 <!--Icon-fonts css-->
 <link href="{{asset('dashboard/assets/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
 <link href="{{asset('dashboard/assets/ionicon/css/ionicons.min.css')}}" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <!--Morris Chart CSS -->
 <link rel="stylesheet" href="{{asset('dashboard/assets/morris/morris.css')}}">
@@ -167,7 +169,7 @@
 
 <!-- Footer Start -->
 <footer class="footer">
-{{ date('Y') }} © Velonic.
+{{ date('Y') }} © evuze pharmacy.
 </footer>
 <!-- Footer Ends -->
 </section>
