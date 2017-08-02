@@ -70,10 +70,6 @@
     <li><a href="{{ route('pharmacy.dashboard') }}">{{ ucfirst($user->pharmacy->name) }}</a> </li>
  @if(count(Request::segments()) == 1)
     <li><a href="{{route('voyager.dashboard', [], false)}}"> Dashboard </a></li>
-@else
-    <li class="active">
-        <a href="{{ route('voyager.dashboard')}}"><i class="voyager-boat"></i> Dashboard ></a>
-    </li>
 @endif
 <?php $breadcrumb_url = url(''); ?>
 @for($i = 1; $i <= count(Request::segments()); $i++)
