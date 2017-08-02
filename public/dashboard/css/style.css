@@ -125,9 +125,11 @@ aside.left-panel.lg + .content {
 .logo {
   text-align: center;
   background-color: #ffffff;
-  padding: 13px 10px;
+  padding: 3px 15px 0px 0px;
 }
-
+.logo img {
+  width: 50px;
+}
 .logo-expanded {
   font-size: 20px;
   letter-spacing: .05em;
@@ -406,7 +408,7 @@ header .navbar-default .navbar-nav>li>a {
 }
 
 .content > .container-fluid {
-  padding-left: 20px;
+  /*padding-left: 20px;*/
   padding-right: 20px;
 }
 

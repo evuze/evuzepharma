@@ -6,7 +6,7 @@
     <meta name="description" content="{{ Voyager::setting("title") }}">
     <meta name="author" content="e-vuze dev team">
     <link rel="shortcut icon" href="img/favicon_1.ico">
-    <title>e-vuze- {{ Voyager::setting("title") }}</title>
+    <title>{{ ucwords(getCurrentPharmacy()->name) }} | e-vuze </title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('dashboard/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -56,13 +56,12 @@
                     <!-- brand -->
                     <div class="logo">
                         <a href="{{ url(route('pharmacy.dashboard')) }}" class="logo-expanded">
-                            <i class="ion-social-buffer"></i>
-                            <span class="nav-label">{{ Voyager::setting("title") }}</span>
+                            <img src="{{ Voyager::image(getCurrentPharmacy()->logo) }}" class="img-responsive" width="30px">
                         </a>
                     </div>
                     <!-- / brand -->
                 </li>
-                <li><a href="{{ route('pharmacy.dashboard') }}">{{ ucfirst($user->pharmacy->name) }}</a></li>
+                {{--<li><a href="{{ route('pharmacy.dashboard') }}">{{ ucfirst($user->pharmacy->name) }}</a></li>--}}
                 @if(count(Request::segments()) == 1)
                     <li><a href="{{route('voyager.dashboard', [], false)}}"> Dashboard </a></li>
                 @endif
