@@ -402,7 +402,7 @@ header .navbar-default .navbar-nav>li>a {
 /***************** 4.Content Area (right) ****************/
 
 .content {
-  margin-left: 250px;
+  /*margin-left: 250px;*/
 }
 
 .content > .container-fluid {
@@ -412,8 +412,8 @@ header .navbar-default .navbar-nav>li>a {
 
 .wraper {
   padding-top: 20px;
-  min-height: 550px;
-  padding-bottom: 70px;
+  min-height: 526px;
+  padding-bottom: 20px;
 }
 .page-title {
   padding: 0px 0px 20px;
@@ -430,10 +430,10 @@ header .navbar-default .navbar-nav>li>a {
 /***************** 5.Footer ****************/
 .footer {
   color: #58666e;
-  position: absolute;
-  left: 250px;
-  right: 0px;
-  bottom: 0px;
+  /*position: absolute;*/
+  /*left: 250px;*/
+  /*right: 0px;*/
+  /*bottom: 0px;*/
   padding: 20px 30px;
   background-color: #f9f9f9;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
