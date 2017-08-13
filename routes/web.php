@@ -1,4 +1,5 @@
 <?php
+use TCG\Voyager\Models\DataType;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,6 @@ Route::group(['middleware' => 'pharmacy.auth', 'prefix' => 'pharmacy'], function
 
     Route::get('/', "PharmacistController@dashboard");
     Route::get('/dashboard', "PharmacistController@dashboard")->name('pharmacy.dashboard');
+
 
 });

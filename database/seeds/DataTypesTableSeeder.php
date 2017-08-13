@@ -56,7 +56,7 @@ class DataTypesTableSeeder extends Seeder
         }
 
 
-        $dataType = $this->dataType('slug', 'drugs');
+        $dataType = $this->dataType('slug', 'all-drugs');
         if (!$dataType->exists) {
             $dataType->fill([
                 'name'                  => 'drugs',
@@ -142,7 +142,7 @@ class DataTypesTableSeeder extends Seeder
             ])->save();
         }
 
-        $dataType = $this->dataType('slug', 'pharm-drugs');
+        $dataType = $this->dataType('slug', 'drugs');
         if (!$dataType->exists) {
             $dataType->fill([
                 'name'                  => 'pharm_drug',
