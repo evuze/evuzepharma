@@ -113,6 +113,48 @@ class DataTypesTableSeeder extends Seeder
                 'description'           => '',
             ])->save();
         }
+
+        $dataType = $this->dataType('slug', 'drug-unit');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'drug_unit',
+                'display_name_singular' => 'Drug Unit',
+                'display_name_plural'   => 'Drug Units',
+                'icon'                  => 'voyager-wand',
+                'model_name'            => 'App\\DrugUnit',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'drug-strength');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'drug_strength',
+                'display_name_singular' => 'Drug Strength',
+                'display_name_plural'   => 'Drug Strengths',
+                'icon'                  => 'voyager-barbell',
+                'model_name'            => 'App\\DrugStrength',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'pharm-drugs');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'pharm_drug',
+                'display_name_singular' => 'Pharmacy\'drug',
+                'display_name_plural'   => 'Pharmacy\'drugs',
+                'icon'                  => 'voyager-droplet',
+                'model_name'            => '\\APP\\DrugStrength',
+                'controller'            => '',
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
     }
 
     /**

@@ -31,6 +31,8 @@ class PermissionsTableSeeder extends Seeder
         Permission::generateFor('pharmacies');
         Permission::generateFor('employees');
         Permission::generateFor('drags');
+        Permission::generateFor('drug_units');
+        Permission::generateFor('drug_strengths');
 
     }
 }

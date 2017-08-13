@@ -18,6 +18,8 @@ class DataRowsTableSeeder extends Seeder
         $ownerDataType = DataType::where('slug', "owners")->firstOrFail();
         $employeeDataType = DataType::where('slug', "employees")->firstOrFail();
         $dragDataType = DataType::where('slug', "drugs")->firstOrFail();
+        $drugUnit = DataType::where('slug', 'drug-unit')->firstOrFail();
+        $drugStrength = DataType::where('slug', 'drug-strength')->firstOrFail();
 
         /**
          * DataRow for Owners Table
@@ -809,6 +811,188 @@ class DataRowsTableSeeder extends Seeder
         }
 
         $dataRow = $this->dataRow($dragDataType, 'updated_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'updated_at',
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 6,
+            ])->save();
+        }
+
+        /**
+         *  DataRows for Drug Units DataType
+         */
+
+        $dataRow = $this->dataRow($drugUnit, 'id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'id',
+                'required'     => 1,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 1,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($drugUnit, 'name');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Unit Label',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'      =>  'required|unique:drug_units,name',
+                        'message'   =>  'Drag Unit Label is needed'
+                    ]
+                ]),
+                'order'        => 1,
+            ])->save();
+        }
+        $dataRow = $this->dataRow($drugUnit, 'comment');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text_area',
+                'display_name' => 'Comment',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'      =>  'min:5'
+                    ]
+                ]),
+                'order'        => 2,
+            ])->save();
+        }
+        $dataRow = $this->dataRow($drugUnit, 'created_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'created_at',
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 5,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($drugUnit, 'updated_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'updated_at',
+                'required'     => 0,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 6,
+            ])->save();
+        }
+
+        /**
+         *  DataRows for Drug Strength DataType
+         */
+
+        $dataRow = $this->dataRow($drugStrength, 'id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'id',
+                'required'     => 1,
+                'browse'       => 0,
+                'read'         => 0,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 1,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($drugStrength, 'name');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Strength Label',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'      =>  'required|unique:drug_strengths,name',
+                        'message'   =>  'Drag Strength Label is needed'
+                    ]
+                ]),
+                'order'        => 1,
+            ])->save();
+        }
+        $dataRow = $this->dataRow($drugStrength, 'comment');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text_area',
+                'display_name' => 'Comment',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => json_encode([
+                    'validation'    =>  [
+                        'rule'      =>  'min:5'
+                    ]
+                ]),
+                'order'        => 2,
+            ])->save();
+        }
+        $dataRow = $this->dataRow($drugStrength, 'created_at');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'timestamp',
+                'display_name' => 'created_at',
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 0,
+                'add'          => 0,
+                'delete'       => 0,
+                'details'      => '',
+                'order'        => 5,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($drugStrength, 'updated_at');
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'timestamp',

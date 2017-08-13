@@ -32,10 +32,24 @@ class MenuItemsTableSeeder extends Seeder
                     'order'      => 1,
                 ])->save();
             }
+            $drugsMenuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Drugs',
+                'url'        => '',
+            ]);
+            if (!$drugsMenuItem->exists) {
+                $drugsMenuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-leaf',
+                    'color'      => null,
+                    'parent_id'  => null,
+                    'order'      => 2,
+                ])->save();
+            }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
-                'title'      => 'Drugs',
+                'title'      => 'Drugs Names',
                 'url'        => route('voyager.drugs.index', [], false),
             ]);
             if (!$menuItem->exists) {
@@ -43,8 +57,38 @@ class MenuItemsTableSeeder extends Seeder
                     'target'     => '_self',
                     'icon_class' => 'voyager-leaf',
                     'color'      => null,
-                    'parent_id'  => null,
+                    'parent_id'  => $drugsMenuItem->id,
+                    'order'      => 1,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Drugs Units',
+                'url'        => route('voyager.drug-unit.index', [], false),
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-wand',
+                    'color'      => null,
+                    'parent_id'  => $drugsMenuItem->id,
                     'order'      => 2,
+                ])->save();
+            }
+
+            $menuItem = MenuItem::firstOrNew([
+                'menu_id'    => $menu->id,
+                'title'      => 'Drugs Strengths',
+                'url'        => route('voyager.drug-strength.index', [], false),
+            ]);
+            if (!$menuItem->exists) {
+                $menuItem->fill([
+                    'target'     => '_self',
+                    'icon_class' => 'voyager-barbell',
+                    'color'      => null,
+                    'parent_id'  => $drugsMenuItem->id,
+                    'order'      => 3,
                 ])->save();
             }
 
@@ -182,6 +226,9 @@ class MenuItemsTableSeeder extends Seeder
                     'order'      => 12,
                 ])->save();
             }
+
+
+
         }
     }
 }

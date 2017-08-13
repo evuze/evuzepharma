@@ -14,6 +14,10 @@
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::group(['middleware' => 'admin.user'], function () {
+        Route::get('import/{item}', "Activities\\ImportsController@getImportView")->name('import');
+        Route::post("import", "Activities\\ImportsController@importFileIntoDB")->name("import-csv-excel");
+    });
 });
 
 Route::get('/', "Auth\\PharmacyController@showLoginForm");
