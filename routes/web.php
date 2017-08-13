@@ -37,5 +37,15 @@ Route::group(['middleware' => 'pharmacy.auth', 'prefix' => 'pharmacy'], function
     Route::get('/', "PharmacistController@dashboard");
     Route::get('/dashboard', "PharmacistController@dashboard")->name('pharmacy.dashboard');
 
+    $dataType_ = DataType::where('generate_permissions', '0');
+    if( $dataType_->count() > 0 ) {
+        foreach ($dataType_->get() as $dataType) {
+            $breadController = $dataType->controller
+                ? $dataType->controller
+                : 'BreadController';
+
+            Route::resource($dataType->slug, $breadController);
+        }
+    }
 
 });

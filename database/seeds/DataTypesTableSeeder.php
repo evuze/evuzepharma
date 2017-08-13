@@ -145,13 +145,13 @@ class DataTypesTableSeeder extends Seeder
         $dataType = $this->dataType('slug', 'drugs');
         if (!$dataType->exists) {
             $dataType->fill([
-                'name'                  => 'pharm_drug',
-                'display_name_singular' => 'Pharmacy\'drug',
-                'display_name_plural'   => 'Pharmacy\'drugs',
+                'name'                  => 'Drug',
+                'display_name_singular' => ': \'s drug',
+                'display_name_plural'   => ': \'s drugs',
                 'icon'                  => 'voyager-droplet',
                 'model_name'            => 'App\\PharmDrug',
-                'controller'            => 'App\\Http\\Controllers\\BreadController',
-                'generate_permissions'  => 1,
+                'controller'            => '\\App\\Http\\Controllers\\BreadController',
+                'generate_permissions'  => 0,
                 'description'           => '',
             ])->save();
         }
