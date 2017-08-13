@@ -149,8 +149,8 @@ class DataTypesTableSeeder extends Seeder
                 'display_name_singular' => 'Pharmacy\'drug',
                 'display_name_plural'   => 'Pharmacy\'drugs',
                 'icon'                  => 'voyager-droplet',
-                'model_name'            => '\\APP\\DrugStrength',
-                'controller'            => '',
+                'model_name'            => 'App\\PharmDrug',
+                'controller'            => 'App\\Http\\Controllers\\BreadController',
                 'generate_permissions'  => 1,
                 'description'           => '',
             ])->save();

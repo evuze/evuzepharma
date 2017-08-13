@@ -8,7 +8,7 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="row text-center">
                 <div class="col-sm-6 col-md-4">
-                <a href="#">
+                <a href="">
                     <div class="panel">
                         <div class="h2 text-success">Drugs</div>
                         <span class="h3 text-muted">15852</span>
