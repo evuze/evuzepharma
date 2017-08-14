@@ -114,7 +114,7 @@ class BreadController extends Controller
         $val = $this->validateBread($request->all(), $dataType->addRows);
 
         if ($val->fails()) {
-            return response()->json(['errors' => $val->messages()]);
+            return redirect()->back()->withInput($request->all())->withErrors($val->messages());
         }
 
         if (!$request->ajax()) {
