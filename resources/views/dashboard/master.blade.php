@@ -31,6 +31,9 @@
     <link href="{{asset('dashboard/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('dashboard/css/helper.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{{ voyager_asset('lib/css/select2.min.css') }}">
+
+    @yield('css')
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -61,9 +64,9 @@
                     </div>
                     <!-- / brand -->
                 </li>
-                {{--<li><a href="{{ route('pharmacy.dashboard') }}">{{ ucfirst($user->pharmacy->name) }}</a></li>--}}
+
                 @if(count(Request::segments()) == 1)
-                    <li><a href="{{route('voyager.dashboard', [], false)}}"> Dashboard </a></li>
+                    <li><a href="{{ url(route('pharmacy.dashboard')) }}"> Dashboard </a></li>
                 @endif
                 <?php $breadcrumb_url = url(''); ?>
                 @for($i = 1; $i <= count(Request::segments()); $i++)
@@ -125,8 +128,8 @@
                 <!-- user login dropdown start-->
                 <li class="dropdown text-center">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="">
-                        <img alt="" src="{{ Voyager::image($user->avatar) }}" class="img-circle profile-img thumb-sm">
-                        <span class="username">{{ $user->email }} </span> <span class="caret"></span>
+                        <img alt="" src="{{ Voyager::image(getCurrentUser()->avatar) }}" class="img-circle profile-img thumb-sm">
+                        <span class="username">{{ getCurrentUser()->email }} </span> <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu pro-menu fadeInUp animated" tabindex="5003"
                         style="overflow: hidden; outline: none;">
@@ -177,6 +180,11 @@
 <script src="{{asset('dashboard/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
 <script src="{{asset('dashboard/assets/chat/moment-2.2.1.js')}}"></script>
 
+<!-- DataTable -->
+<script src="{{ asset('dashboard/assets/jquery-datatables-editable/jquery.dataTables.js')  }}"></script>
+<script src="{{ asset('dashboard/assets/datatables/dataTables.bootstrap.js')  }}"></script>
+<script src="{{ asset('dashboard/assets/jquery-datatables-editable/datatables.editable.init.js')  }}"></script>
+
 <!-- Counter-up -->
 <script src="{{asset('dashboard/js/waypoints.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('dashboard/js/jquery.counterup.min.js')}}" type="text/javascript"></script>
@@ -211,6 +219,15 @@
 
 <!-- Todo -->
 <script src="{{asset('dashboard/js/jquery.todo.js')}}"></script>
-
+<script type="text/javascript" src="{{ voyager_asset('js/select2/select2.min.js') }}"></script>
+<script>
+    jQuery(document).ready(function() {
+        // Select2
+        jQuery(".select2").select2({
+            width: '100%'
+        });
+    });
+</script>
+@yield('javascript')
 </body>
 </html>

@@ -13,4 +13,8 @@ class Drag extends Model
     ];
     protected $dates = ['deleted_at'];
 
+    public function pharmdrug()
+    {
+        $this->hasMany(PharmDrug::class);
+    }
 }

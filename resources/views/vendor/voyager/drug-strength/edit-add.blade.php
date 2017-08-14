@@ -1,4 +1,4 @@
-@extends('voyager::master')
+@extends('voyager::dashboard.breadmaster')
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">

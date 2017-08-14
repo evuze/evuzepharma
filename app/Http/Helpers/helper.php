@@ -30,3 +30,29 @@ if ( !function_exists("getCurrentPharmacy") ) {
         return null;
     }
 }
+
+if ( !function_exists('getDrugsNumber')  ) {
+    function getDrugsNumber()
+    {
+        $count = \App\PharmDrug::where('pharmacy_id', getCurrentPharmacy()->id);
+
+        return $count->count();
+    }
+}
+
+if ( ! function_exists('getPharmacyMenus') ) {
+    function getPharmacyMenus($slug)
+    {
+        $view = false;
+        if( isset($slug) ){
+            if ( view()->exists("pharmacy.partials.menus.".$slug) ){
+                $view = "pharmacy.partials.menus.".$slug;
+                $size = \File::size(view()->make($view)->getPath());
+                if( ! $size )
+                    $view = false;
+            }
+
+        }
+        return $view;
+    }
+}
