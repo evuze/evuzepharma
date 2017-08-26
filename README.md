@@ -5,5 +5,5 @@ e pharmacy
 # Author
 
 Niyitanga Sam niyitangasam@gmail.com   
-Hirwa felix hirwaf@gmail.com   
+Hirwa felix hirwaf.1@gmail.com   
 Mucyo Miller mucyomiller@gmail.com
