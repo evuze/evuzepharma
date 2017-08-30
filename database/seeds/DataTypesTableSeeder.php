@@ -63,9 +63,9 @@ class DataTypesTableSeeder extends Seeder
                 'display_name_singular' => 'Drug',
                 'display_name_plural'   => 'Drugs',
                 'icon'                  => 'voyager-leaf',
-                'model_name'            => 'App\\Drag',
+                'model_name'            => 'App\\Drug',
                 'controller'            => '',
-//                'controller'            => '\\App\\Http\\Controllers\\DragsController',
+//                'controller'            => '\\App\\Http\\Controllers\\DrugsController',
                 'generate_permissions'  => 1,
                 'description'           => '',
             ])->save();

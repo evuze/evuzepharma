@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDragsTable extends Migration
+class CreateDrugsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDragsTable extends Migration
      */
     public function up()
     {
-        Schema::create('drags', function (Blueprint $table) {
+        Schema::create('drugs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('full_name')->unique();
             $table->string('short_name')->unique()->nullable();
@@ -30,6 +30,6 @@ class CreateDragsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drags');
+        Schema::dropIfExists('drugs');
     }
 }
