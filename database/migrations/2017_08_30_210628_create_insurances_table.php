@@ -14,8 +14,13 @@ class CreateInsurancesTable extends Migration
     public function up()
     {
         Schema::create('insurances', function (Blueprint $table) {
-            $table->increments('id');
+
+            $table->uuid('id'); //using uuid as id
+            $table->string('name');
             $table->timestamps();
+
+            //setting primary key
+            $table->primary('id');
         });
     }
 

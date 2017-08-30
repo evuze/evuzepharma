@@ -14,13 +14,16 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id'); // uui as id
             $table->string('names');
             $table->string('sex');
             $table->string('address');
             $table->string('phone');
             $table->integer('insurance_id')->unsigned();
             $table->timestamps();
+
+            //setting prmary key
+            $table->primary('id');
         });
     }
 
