@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDragsTable extends Migration
+class CreateInsurancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateDragsTable extends Migration
      */
     public function up()
     {
-        Schema::create('drags', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('full_name')->unique();
-            $table->string('short_name')->unique()->nullable();
-            $table->string('details')->nullable();
-            $table->softDeletes();
+        Schema::create('insurances', function (Blueprint $table) {
+
+            $table->uuid('id'); //using uuid as id
+            $table->string('name');
             $table->timestamps();
+
+            //setting primary key
+            $table->primary('id');
         });
     }
 
@@ -30,6 +31,6 @@ class CreateDragsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drags');
+        Schema::dropIfExists('insurances');
     }
 }
