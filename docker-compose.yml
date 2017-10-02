@@ -4,10 +4,12 @@ services:
   mariadb:
     image: 'bitnami/mariadb:latest'
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_ROOT_PASSWORD=evuze
       - MARIADB_USER=evuze
       - MARIADB_DATABASE=evuze
       - MARIADB_PASSWORD=evuze
+    volumes:
+      - ./my_custom.cnf:/bitnami/mariadb/conf/my_custom.cnf:ro
 
   myapp:
     tty: true
