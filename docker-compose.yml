@@ -24,7 +24,7 @@ services:
   web:
     build: Dockerfiles/php-fpm/.
     volumes:
-      - ./develop:/var/www/html
+      - .:/var/www/html
     links:
       - mysql
     environment:
