@@ -1,31 +1,27 @@
 version: '2'
+
 services:
-  data:
-    image: busybox
-    volumes:
-      - /var/lib/mysql
-  mysql:
-    image: mysql:5.7
+  mariadb:
+    image: 'bitnami/mariadb:latest'
     environment:
-      MYSQL_ROOT_PASSWORD: evuze
-      MYSQL_DATABASE: evuze
-      MYSQL_USER: evuze
-      MYSQL_PASSWORD: evuze
-    volumes_from:
-      - data
-    volumes:
-      - ./misc/data:/root/data
-  nginx:
-    build: Dockerfiles/nginx/.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=evuze
+      - MARIADB_DATABASE=evuze
+      - MARIADB_PASSWORD=evuze
+
+  myapp:
+    tty: true
+    image: 'bitnami/laravel:latest'
+    labels:
+      kompose.service.type: nodeport
+    environment:
+      - DB_HOST=mariadb
+      - DB_USERNAME=evuze
+      - DB_DATABASE=evuze
+      - DB_PASSWORD=evuze
+    depends_on:
+      - mariadb
     ports:
-      - "8080:80"
-    links:
-      - web
-  web:
-    build: Dockerfiles/php-fpm/.
+      - 8080:3000
     volumes:
-      - .:/var/www/html
-    links:
-      - mysql
-    environment:
-      DB_HOST: mysql
+      - ./:/app
