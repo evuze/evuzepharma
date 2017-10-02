@@ -1,0 +1,31 @@
+version: '2'
+services:
+  data:
+    image: busybox
+    volumes:
+      - /var/lib/mysql
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: evuze
+      MYSQL_DATABASE: evuze
+      MYSQL_USER: evuze
+      MYSQL_PASSWORD: evuze
+    volumes_from:
+      - data
+    volumes:
+      - ./misc/data:/root/data
+  nginx:
+    build: Dockerfiles/nginx/.
+    ports:
+      - "80:80"
+    links:
+      - web
+  web:
+    build: Dockerfiles/php-fpm/.
+    volumes:
+      - ./develop:/var/www/html
+    links:
+      - mysql
+    environment:
+      DB_HOST: mysql
