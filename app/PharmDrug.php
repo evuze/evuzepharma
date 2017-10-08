@@ -33,7 +33,7 @@ class PharmDrug extends Model
 
     public function drug()
     {
-        return $this->belongsTo(Drag::class);
+        return $this->belongsTo(Drug::class);
     }
 
     public function unit()

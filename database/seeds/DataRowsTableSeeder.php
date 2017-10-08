@@ -758,7 +758,7 @@ class DataRowsTableSeeder extends Seeder
                 'delete'       => 1,
                 'details'      => json_encode([
                     'validation'    =>  [
-                        'rule'  =>  "required|unique:drags,full_name"
+                        'rule'  =>  "required|unique:drugs,full_name"
                     ]
                 ]),
                 'order'        => 2,
@@ -777,7 +777,7 @@ class DataRowsTableSeeder extends Seeder
                 'delete'       => 1,
                 'details'      => json_encode([
                     'validation'    =>  [
-                        'rule'  =>  "min:2|max:7|unique:drags,short_name"
+                        'rule'  =>  "min:2|max:7|unique:drugs,short_name"
                     ]
                 ]),
                 'order'        => 3,
@@ -866,7 +866,7 @@ class DataRowsTableSeeder extends Seeder
                 'details'      => json_encode([
                     'validation'    =>  [
                         'rule'      =>  'required|unique:drug_units,name',
-                        'message'   =>  'Drag Unit Label is needed'
+                        'message'   =>  'Drug Unit Label is needed'
                     ]
                 ]),
                 'order'        => 1,
@@ -957,7 +957,7 @@ class DataRowsTableSeeder extends Seeder
                 'details'      => json_encode([
                     'validation'    =>  [
                         'rule'      =>  'required|unique:drug_strengths,name',
-                        'message'   =>  'Drag Strength Label is needed'
+                        'message'   =>  'Drug Strength Label is needed'
                     ]
                 ]),
                 'order'        => 1,
