@@ -14,7 +14,7 @@ class PharmDrug extends Model
      */
     public function drugId()
     {
-        return $this->belongsTo(Drag::class);
+        return $this->belongsTo(Drug::class);
     }
 
     public function unitId()
