@@ -26,7 +26,7 @@ services:
             - "REDIS_HOST=cache"
     database:
         # image: mysql:5.7.16
-        dokerfile: deploy/database.docker
+        dockerfile: deploy/database.docker
         environment:
             - "MYSQL_ROOT_PASSWORD=umvashA@200"
             - "MYSQL_DATABASE=evuzepharmacy"
