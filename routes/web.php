@@ -27,8 +27,9 @@ Route::group(['middleware' => 'pharmacy.auth', 'prefix' => 'pharmacy'], function
     Route::get('/', "PharmacistController@dashboard");
     Route::get('/dashboard', "PharmacistController@dashboard")->name('pharmacy.dashboard');
 
-    $dataType_ = DataType::where('generate_permissions', '0');
-    if( $dataType_->count() > 0 ) {
+    try{
+
+        $dataType_ = DataType::where('generate_permissions', '0');
         foreach ($dataType_->get() as $dataType) {
             $breadController = $dataType->controller
                 ? $dataType->controller
@@ -36,6 +37,12 @@ Route::group(['middleware' => 'pharmacy.auth', 'prefix' => 'pharmacy'], function
 
             Route::resource($dataType->slug, $breadController);
         }
+        // if( $dataType_->count() > 0 ) {
+        // }
+    }  catch (\InvalidArgumentException $e) {
+        throw new \InvalidArgumentException("Custom routes hasn't been configured because: ".$e->getMessage(), 1);
+    } catch (\Exception $e) {
+        // do nothing, might just be because table not yet migrated.
     }
 
 });
