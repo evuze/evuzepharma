@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y libmcrypt-dev mysql-client \
 RUN apt-get update && apt-get install -y \
         libmagickwand-dev --no-install-recommends
 
-RUN apt-get install imagick && docker-php-ext-enable imagick\
+RUN apt-get install imagemagick && docker-php-ext-enable imagick\
 	&& docker-php-ext-configure gd \
         --enable-gd-native-ttf \
         --with-freetype-dir=/usr/include/freetype2 \
