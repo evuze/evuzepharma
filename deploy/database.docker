@@ -6,7 +6,7 @@ RUN echo "deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted univer
 RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
 RUN echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
 
-RUN apt-get update && \
+RUN sudo apt-get update && \
 	apt-get -y install mysql-server-5.7 && \
 	mkdir -p /var/lib/mysql && \
 	mkdir -p /var/run/mysqld && \
