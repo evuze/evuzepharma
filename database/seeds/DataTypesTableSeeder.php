@@ -79,8 +79,7 @@ class DataTypesTableSeeder extends Seeder
                 'display_name_plural'   => 'Users',
                 'icon'                  => 'voyager-person',
                 'model_name'            => 'App\\User',
-                'controller'            => '',
-//                'controller'            => '\\App\\Http\\Controllers\\UsersController',
+                'controller'            => '\\App\\Http\\Controllers\\UsersController',
                 'generate_permissions'  => 1,
                 'description'           => '',
             ])->save();
