@@ -17,8 +17,21 @@ class PermissionRoleTableSeeder extends Seeder
          *  Adding Permission to Admin Role
          */
         $role = Role::where('name', 'admin')->firstOrFail();
-
         $permissions = Permission::all();
+
+        /*
+         * Exincluding Some Table for Admin
+         */
+        $except = Permission::where('table_name', 'pharmacies')
+                            ->orWhere('table_name', 'employees');
+        $exceptArr = [];
+        if( $except->count() > 0 ) {
+            foreach ($except->get() as $element) {
+                $exceptArr[] = $element->id;
+            }
+        }
+        if( count($exceptArr) > 0 )
+            $permissions = Permission::all()->except($exceptArr);
 
         $role->permissions()->sync(
             $permissions->pluck('id')->all()

@@ -33,4 +33,10 @@ class Pharmacy extends BaseModel
     {
         return $this->belongsTo(User::class);
     }
+
+    public function insurance() {
+        $this->hasMay(PharmInsurance::class, 'id', 'pharmacy_id');
+    }
+
+
 }

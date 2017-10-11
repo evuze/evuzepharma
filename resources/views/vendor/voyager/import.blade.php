@@ -1,4 +1,4 @@
-@extends("voyager::dashboard.breadmaster")
+@extends("voyager::master")
 
 @section('page_title','Import '.$dataType->display_name_singular)
 

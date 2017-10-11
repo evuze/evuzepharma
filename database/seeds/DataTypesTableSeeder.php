@@ -116,7 +116,7 @@ class DataTypesTableSeeder extends Seeder
         $dataType = $this->dataType('slug', 'drug-unit');
         if (!$dataType->exists) {
             $dataType->fill([
-                'name'                  => 'drug_unit',
+                'name'                  => 'drug_units',
                 'display_name_singular' => 'Drug Unit',
                 'display_name_plural'   => 'Drug Units',
                 'icon'                  => 'voyager-wand',
@@ -130,7 +130,7 @@ class DataTypesTableSeeder extends Seeder
         $dataType = $this->dataType('slug', 'drug-strength');
         if (!$dataType->exists) {
             $dataType->fill([
-                'name'                  => 'drug_strength',
+                'name'                  => 'drug_strengths',
                 'display_name_singular' => 'Drug Strength',
                 'display_name_plural'   => 'Drug Strengths',
                 'icon'                  => 'voyager-barbell',
@@ -150,7 +150,21 @@ class DataTypesTableSeeder extends Seeder
                 'icon'                  => 'voyager-droplet',
                 'model_name'            => 'App\\PharmDrug',
                 'controller'            => '\\App\\Http\\Controllers\\BreadController',
-                'generate_permissions'  => 0,
+                'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'insurances');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'insurances',
+                'display_name_singular' => 'Insurance',
+                'display_name_plural'   => 'Insurances',
+                'icon'                  => 'voyager-umbrella',
+                'model_name'            => 'App\\Insurance',
+                'controller'            => '',
+                'generate_permissions'  => 1,
                 'description'           => '',
             ])->save();
         }

@@ -56,3 +56,13 @@ if ( ! function_exists('getPharmacyMenus') ) {
         return $view;
     }
 }
+
+if ( ! function_exists("getCurrentPharmacyInsurance") ){
+    function getCurrentPharmacyInsurance()
+    {
+        $pharm = getCurrentPharmacy();
+        $pharmInsurance = $pharm->insurance()->insurance();
+    
+        return $pharmInsurance;
+    }
+}

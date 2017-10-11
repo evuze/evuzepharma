@@ -14,7 +14,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Title',
-                'value'        => 'Site Title',
+                'value'        => 'Evuze',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 1,
@@ -58,7 +58,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Title',
-                'value'        => 'Voyager',
+                'value'        => 'Evuze Pharmacy',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 4,
@@ -69,7 +69,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Description',
-                'value'        => 'Welcome to Voyager. The Missing Admin for Laravel',
+                'value'        => 'Welcome evuze pharmacy',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 5,
