@@ -154,6 +154,34 @@ class DataTypesTableSeeder extends Seeder
                 'description'           => '',
             ])->save();
         }
+        $dataType = $this->dataType('slug', 'sales');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'Sales',
+                'display_name_singular' => 'sale',
+                'display_name_plural'   => 'sales',
+                'icon'                  => 'voyager-bag',
+                'model_name'            => 'App\\Sales',
+                'controller'            => '\\App\\Http\\Controllers\\SalesController',
+                'generate_permissions'  => 0,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'customer');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'Customer',
+                'display_name_singular' => 'customer',
+                'display_name_plural'   => 'customers',
+                'icon'                  => 'voyager-person',
+                'model_name'            => 'App\\Customer',
+                'controller'            => '\\App\\Http\\Controllers\\SalesController',
+                'generate_permissions'  => 0,
+                'description'           => '',
+            ])->save();
+        }
+    
     }
 
     /**
