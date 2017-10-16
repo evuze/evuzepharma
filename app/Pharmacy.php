@@ -35,8 +35,18 @@ class Pharmacy extends BaseModel
     }
 
     public function insurance() {
-        $this->hasMay(PharmInsurance::class, 'id', 'pharmacy_id');
+        $this->hasMany(PharmInsurance::class);
     }
+
+    public function getInsurance()
+    {   
+        $pharm = PharmInsurance::select('id', 'pharmacy_id', 'insurance_id')->where('pharmacy_id', $this->id);
+        return $pharm;
+    }
+
+
+
+    
 
 
 }

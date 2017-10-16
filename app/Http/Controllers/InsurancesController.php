@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use TCG\Voyager\Http\Controllers\VoyagerBreadController;
+use App\Http\Controllers\BreadController;
 use TCG\Voyager\Facades\Voyager;
-
-use App\Pharmacy;
 use Auth;
 
-class PharmaciesController extends VoyagerBreadController
+class InsurancesController extends BreadController
 {
     /**
      * Display a listing of the resource.
@@ -18,23 +16,50 @@ class PharmaciesController extends VoyagerBreadController
      */
     public function index(Request $request)
     {
-        parent::index($request);
-
+        // dd(Auth::guard('pharmacy')->user()->email);
+        $pID = Auth::guard('pharmacy')->user()->pharmacy_id;
         $slug = $this->getSlug($request);
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
-        $get = Pharmacy::where('user_id', Auth::user()->id);
-        $dataTypeContent = $get->get();
+        
+        $getter = $dataType->server_side ? 'paginate' : 'get';
 
-        $view = 'voyager::bread.browse';
+        if (strlen($dataType->model_name) != 0) {
+            $model = app($dataType->model_name);
 
-        if (view()->exists("voyager::$slug.browse")) {
-            $view = "voyager::$slug.browse";
+            $relationships = $this->getRelationships($dataType);
+            
+            
+            if ($model->timestamps) {
+                $dataTypeContent = call_user_func([
+                    $model->where('pharmacy_id', $pID)->with($relationships)->latest(),
+                    $getter
+                ]);
+            } else {
+                $dataTypeContent = call_user_func([
+                    $model->with($relationships)->orderBy($model->getKeyName(), 'DESC'),
+                    $getter,
+                ]);
+            }
+
+            //Replace relationships' keys for labels and create READ links if a slug is provided.
+            $dataTypeContent = $this->resolveRelations($dataTypeContent, $dataType);
+        } else {
+            // If Model doesn't exist, get data from table name
+            $dataTypeContent = call_user_func([DB::table($dataType->name), $getter]);
+            $model = false;
         }
+
+        $view = 'pharmacy.bread.browse';
+
+        if (view()->exists("pharmacy.$slug.browse"))
+            $view = "pharmacy.$slug.browse";
 
         // Check if BREAD is Translatable
         $isModelTranslatable = false;
-
         return view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
+        
+        
+        // return parent::index($request);
     }
 
     /**
@@ -66,9 +91,6 @@ class PharmaciesController extends VoyagerBreadController
      */
     public function show(Request $request, $id)
     {
-        if( ! getUserPharmacies()->contains($id) )
-            abort(404);
-
         return parent::show($request, $id);
     }
 
@@ -80,9 +102,6 @@ class PharmaciesController extends VoyagerBreadController
      */
     public function edit(Request $request, $id)
     {
-        if( ! getUserPharmacies()->contains($id) )
-            abort(404);
-
         return parent::edit($request, $id);
     }
 
@@ -95,9 +114,6 @@ class PharmaciesController extends VoyagerBreadController
      */
     public function update(Request $request, $id)
     {
-        if( ! getUserPharmacies()->contains($id) )
-            abort(404);
-
         return parent::update($request, $id);
     }
 
@@ -109,9 +125,12 @@ class PharmaciesController extends VoyagerBreadController
      */
     public function destroy(Request $request, $id)
     {
-        if( ! getUserPharmacies()->contains($id) )
-            abort(404);
-
         return parent::destroy($request, $id);
     }
+
+    public function getSupportedDrugs(Request $request, $id)
+    {
+        dd($id);
+    }
+
 }

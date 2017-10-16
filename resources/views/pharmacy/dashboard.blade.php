@@ -56,10 +56,10 @@
                 </a>
                 </div>
                 <div class="col-sm-6 col-md-4">
-                <a href="{{ route('drugs.index', [], false) }}">
+                <a href="{{ route('pharmacy-insurances.index', [], false) }}">
                     <div class="panel">
                         <div class="h2 text-success">Insurance</div>
-                        <span class="h3 text-muted">5</span>
+                        <span class="h3 text-muted">{{ ! getCurrentPharmacyInsurance() ? "0": getCurrentPharmacyInsurance()->count() }}</span>
                         <div class="text-right">
                             <i class="fa fa-heartbeat fa-2x text-success"></i>
                         </div>

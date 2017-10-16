@@ -46,6 +46,7 @@ class PermissionRoleTableSeeder extends Seeder
         $permissions = Permission::where('table_name', 'pharmacies')
                                     ->orWhere('table_name', 'employees')
                                     ->orWhere('key', 'browse_admin')
+                                    ->orWhere('key', 'browse_insurances')
                                     ->orWhere('key', 'edit_users');
 
         $role->permissions()->sync(

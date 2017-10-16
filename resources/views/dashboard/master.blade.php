@@ -6,7 +6,7 @@
     <meta name="description" content="{{ Voyager::setting("title") }}">
     <meta name="author" content="e-vuze dev team">
     <link rel="shortcut icon" href="img/favicon_1.ico">
-    <title>{{ ucwords(getCurrentPharmacy()->name) }} | e-vuze </title>
+    <title>{{ ucwords(getCurrentPharmacy()->name) }} | {{ Voyager::setting('title') }} </title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('dashboard/css/bootstrap.min.css')}}" rel="stylesheet">

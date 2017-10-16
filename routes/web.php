@@ -8,6 +8,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'admin.user'], function () {
         Route::get('import/{item}', "Activities\\ImportsController@getImportView")->name('import');
         Route::post("import", "Activities\\ImportsController@importFileIntoDB")->name("import-csv-excel");
+        Route::get('import', function(){
+            return abort(404);
+        });
+
+        Route::get("insurances/{id}/partnership", "Activities\\PartnershipController@partner")->name('partner');
+        Route::post("insurances/{id}/partnership", "Activities\\PartnershipController@submit")->name('submit.partnership');
+        Route::post("insurances/{id}/drugs", "Activities\\PartnershipController@relatingDrugs")->name('add.del.drugs');
+        Route::delete("partnership/desrtoy/{id}", "Activities\\PartnershipController@destroy")->name('destroy.partnership');
     });
 });
 
@@ -44,5 +52,7 @@ Route::group(['middleware' => 'pharmacy.auth', 'prefix' => 'pharmacy'], function
     } catch (\Exception $e) {
         // do nothing, might just be because table not yet migrated.
     }
+
+    Route::get('insurance/{id}/drugs', "InsurancesController@getSupportedDrugs")->name('get.insurance.drugs');
 
 });

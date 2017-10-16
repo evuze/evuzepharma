@@ -17,11 +17,11 @@ class PharmInsurance extends Model
     protected $fillable = ['pharmacy_id', 'insurance_id'];
 
     public function pharmacy() {
-        $this->belongsTo(Pharmacy::class);
+        $this->belongsTo(Pharmacy::class, 'pharmacy_id');
     }
 
     public function insurance() {
-        $this->belongsTo(Insurance::class);
+        $this->belongsTo(Insurance::class, 'insurance_id');
     }
 
 }

@@ -36,8 +36,7 @@ class EmployeesController extends VoyagerBreadController
         }
 
         $relationships = $this->getRelationships($dataType);
-        $get = Employee::whereIn('pharmacy_id', $getp)->orderBy('name', "ASC")->with($relationships);
-
+        $get = Employee::whereIn('pharmacy_id', $get)->orderBy('name', "ASC")->with($relationships);
 
         $dataTypeContent = $get->get();
 
@@ -81,7 +80,7 @@ class EmployeesController extends VoyagerBreadController
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
-    {
+    {   
         return parent::show($request, $id);
     }
 

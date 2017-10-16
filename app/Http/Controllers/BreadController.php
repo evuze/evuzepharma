@@ -73,7 +73,6 @@ class BreadController extends Controller
      */
     public function create(Request $request)
     {
-        parent::create($request);
 
         $slug = $this->getSlug($request);
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();

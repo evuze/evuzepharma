@@ -105,7 +105,7 @@ class DataTypesTableSeeder extends Seeder
                 'name'                  => 'roles',
                 'display_name_singular' => 'Role',
                 'display_name_plural'   => 'Roles',
-                'icon'                  => 'voyager-lock',
+                'icon'                  => 'voyager-lall-drugsock',
                 'model_name'            => 'TCG\\Voyager\\Models\\Role',
                 'controller'            => '',
                 'generate_permissions'  => 1,
@@ -144,13 +144,13 @@ class DataTypesTableSeeder extends Seeder
         $dataType = $this->dataType('slug', 'drugs');
         if (!$dataType->exists) {
             $dataType->fill([
-                'name'                  => 'Drug',
-                'display_name_singular' => ': \'s drug',
-                'display_name_plural'   => ': \'s drugs',
+                'name'                  => 'pharm_drugs',
+                'display_name_singular' => ':\'s drug',
+                'display_name_plural'   => ':\'s drugs',
                 'icon'                  => 'voyager-droplet',
                 'model_name'            => 'App\\PharmDrug',
                 'controller'            => '\\App\\Http\\Controllers\\BreadController',
-                'generate_permissions'  => 1,
+                'generate_permissions'  => 0,
                 'description'           => '',
             ])->save();
         }
@@ -165,6 +165,20 @@ class DataTypesTableSeeder extends Seeder
                 'model_name'            => 'App\\Insurance',
                 'controller'            => '',
                 'generate_permissions'  => 1,
+                'description'           => '',
+            ])->save();
+        }
+
+        $dataType = $this->dataType('slug', 'pharmacy-insurances');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'pharminsurances',
+                'display_name_singular' => ':\'s Insurance',
+                'display_name_plural'   => ':\'s Insurances',
+                'icon'                  => 'voyager-umbrella',
+                'model_name'            => 'App\\PharmInsurance',
+                'controller'            => '\\App\\Http\\Controllers\\InsurancesController',
+                'generate_permissions'  => 0,
                 'description'           => '',
             ])->save();
         }

@@ -23,7 +23,7 @@ class Employee extends Authenticatable
 
     public static function all($columns = [])
     {
-        $resp = parent::all($columns);
+        // $resp = parent::all($columns);
 
         $user = Auth::check();
         if ( $user ){

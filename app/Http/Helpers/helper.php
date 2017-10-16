@@ -60,9 +60,65 @@ if ( ! function_exists('getPharmacyMenus') ) {
 if ( ! function_exists("getCurrentPharmacyInsurance") ){
     function getCurrentPharmacyInsurance()
     {
+        $pharmInsurance = null;
         $pharm = getCurrentPharmacy();
-        $pharmInsurance = $pharm->insurance()->insurance();
+        if ($pharm->insurance())
+            $pharmInsurance = $pharm->insurance()->insurance();
     
         return $pharmInsurance;
+    }
+}
+
+if( ! function_exists("getUserPharmacies") ) {
+    function getUserPharmacies() {
+        $user = auth()->user();
+        $pharmacies = $user->pharmacies;
+
+        return $pharmacies;
+    }
+}
+
+if( ! function_exists("getInsurancePartner") ) {
+    function getInsurancePartner($insurance=null, $square=false) {
+        $user = auth()->user();
+        $pharmacies = $user->pharmacies;
+        $countPharm = $pharmacies->count();
+        
+        $enabledPharmacies = [];
+
+        if( $countPharm > 0 ){
+            foreach($pharmacies as $pharmacy) {
+                if($pharmacy->getInsurance()->count() > 0 ){
+                    foreach( $pharmacy->getInsurance()->get() as $pharmInsurance ) {
+                        if( $pharmInsurance->insurance_id == $insurance ){
+                            $enabledPharmacies[] = json_decode(json_encode([
+                                'id'     =>  $pharmacy->id,
+                                'name'   =>  $pharmacy->name
+                            ]));
+                        }
+                    }
+                }
+            }
+        }
+        $feedback = $enabledPharmacies;
+
+        if( $square == true ) {
+            if( count($enabledPharmacies) == $countPharm )
+                $feedback = true;
+            else
+                $feedback = false;
+        }
+
+        return $feedback;
+    }
+}
+
+if( ! function_exists("getInsuranceFrom") ) {
+    function getInsuranceFrom($insurance) {
+        $find = \App\Insurance::find($insurance);
+        if($find != null)
+            return $find;
+
+        return null;
     }
 }
