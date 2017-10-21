@@ -27,9 +27,6 @@
                                     @foreach($dataType->browseRows as $rows)
                                     <th>{{ $rows->display_name }}</th>
                                     @endforeach
-                                    @if (Voyager::can('browse_'.$dataType->name) && ! Voyager::can('add_'.$dataType->name) )
-                                    <th>My Pharmacies</th>
-                                    @endif
                                     <th class="actions">Actions</th>
                                 </tr>
                             </thead>
@@ -100,35 +97,7 @@
                                             @endif
                                         </td>
                                     @endforeach
-                                    @if (Voyager::can('browse_'.$dataType->name) && ! Voyager::can('add_'.$dataType->name) )
-                                    <td @if(count(getInsurancePartner($data->id)) <= 0) style="background: #f5f5f5;"  @endif>
-                                        @if( count(getInsurancePartner($data->id)) > 0 )
-                                            <ul style="list-style: none; padding-left: 0px; margin-left: 0px;">
-                                                @foreach( getInsurancePartner($data->id) as $value )
-                                                    <li>
-                                                        <a href="{{ route('voyager.pharmacies.show', $value->id) }}?ph={{ bcrypt($value->id) }}" class="label label-primary">{{ strtoupper($value->name) }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        @else
-                                            <p class="text-center"><i class="voyager-dot-3"></i></p>
-                                        @endif
-                                    </td>
-                                    @endif
-                                    <td class="no-sort no-click" id="bread-actions" width="332px">
-                                        @if (Voyager::can('browse_'.$dataType->name) && ! Voyager::can('add_'.$dataType->name) && ! getInsurancePartner($data->id, true) )
-                                            <a href="{{ route('partner', $data->id) }}"
-                                               title="Partnering"
-                                               class="btn btn-sm btn-success pull-right partners"
-                                               id="partner-{{ $data->id }}">
-                                                <i class="voyager-lightbulb"></i> <span class="hidden-xs hidden-sm">Partnering</span>
-                                            </a>
-                                        @endif
-                                        @if( Voyager::can('add_'.$dataType->name) )
-                                            <a href="{{ route('add.del.drugs', $data->id) }}" title="Edit" class="btn btn-sm btn-success">
-                                                <i class="voyager-leaf"></i> <span class="hidden-xs hidden-sm">Drugs</span>
-                                            </a>
-                                        @endif
+                                    <td class="no-sort no-click" id="bread-actions">
                                         @if (Voyager::can('delete_'.$dataType->name))
                                             <a href="javascript:;" title="Delete" class="btn btn-sm btn-danger pull-right delete" data-id="{{ $data->id }}" id="delete-{{ $data->id }}">
                                                 <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">Delete</span>
@@ -150,7 +119,7 @@
                             </tbody>
                         </table>
                         @if (isset($dataType->server_side) && $dataType->server_side)
-                            <div class="pull-left">
+                            <div class="pull-left hidden">
                                 <div role="status" class="show-res" aria-live="polite">Showing {{ $dataTypeContent->firstItem() }} to {{ $dataTypeContent->lastItem() }} of {{ $dataTypeContent->total() }} entries</div>
                             </div>
                             <div class="pull-right">
@@ -184,54 +153,28 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-    <div class="modal modal-success fade" tabindex="-1" id="partner_modal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-umbrella"></i> </h4>
-                </div>
-                <form action="{{ route('voyager.'.$dataType->slug.'.index') }}" id="partner_form" method="POST">
-                {{ csrf_field() }}
-                <div class="model-body">
-
-                </div>
-                <div class="modal-footer">
-                        <input type="submit" class="btn btn-success pull-right delete-confirm"
-                                 value="Yes, i am partner of this {{ strtolower($dataType->display_name_singular) }}">
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
-                </div>
-                </form>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
 @stop
 
 @section('css')
-@if(!$dataType->server_side && config('dashboard.data_tables.responsive'))
+{{--  @if(!$dataType->server_side && config('dashboard.data_tables.responsive'))  --}}
 <link rel="stylesheet" href="{{ voyager_asset('lib/css/responsive.dataTables.min.css') }}">
-@endif
+{{--  @endif  --}}
 @stop
 
 @section('javascript')
     <!-- DataTables -->
-    @if(!$dataType->server_side && config('dashboard.data_tables.responsive'))
+    {{--  @if(!$dataType->server_side && config('dashboard.data_tables.responsive'))  --}}
         <script src="{{ voyager_asset('lib/js/dataTables.responsive.min.js') }}"></script>
-    @endif
+    {{--  @endif  --}}
     @if($isModelTranslatable)
         <script src="{{ voyager_asset('js/multilingual.js') }}"></script>
     @endif
     <script>
         $(document).ready(function () {
-            @if (!$dataType->server_side)
-                var table = $('#dataTable').DataTable({
-                    "order": []
-                    @if(config('dashboard.data_tables.responsive')), responsive: true @endif
-                });
-            @endif
+            var table = $('#dataTable').DataTable({
+                "order": []
+                @if(config('dashboard.data_tables.responsive')), responsive: true @endif
+            });
 
             @if ($isModelTranslatable)
                 $('.side-body').multilingual();
@@ -254,26 +197,5 @@
 
             $('#delete_modal').modal('show');
         });
-
-        var partnerFormAction;
-        $('td').on('click', '.partner', function (e) {
-            var form = $('#partner_form')[0];
-            var name = $(this).data('name');
-            if (!partnerFormAction) { // Save form action initial value
-                partnerFormAction = form.action;
-            }
-
-            form.action = partnerFormAction.match(/\/[0-9]+$/)
-                ? partnerFormAction.replace(/([0-9]+$)/, $(this).data('id'))
-                : partnerFormAction + '/' + $(this).data('id');
-            console.log(form.action);
-
-
-
-            $('#partner_modal').find(".modal-title").append().text(name);
-            $('#partner_modal').modal('show');
-        });
-
-
     </script>
 @stop

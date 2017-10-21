@@ -67,6 +67,7 @@ class DataTypesTableSeeder extends Seeder
                 'controller'            => '',
 //                'controller'            => '\\App\\Http\\Controllers\\DrugsController',
                 'generate_permissions'  => 1,
+                'server_side'           => 1,
                 'description'           => '',
             ])->save();
         }

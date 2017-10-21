@@ -20,9 +20,21 @@ class PharmacistController extends Controller
         return view('pharmacy.dashboard', compact('user'));
     }
 
+    public function importDrugs()
+    {
+        return dd($this->user());
+    }
+
+    public function exportDrugs()
+    {
+        return dd(null);
+    }
+
     protected function user()
     {
         return auth()->guard('pharmacy')->user();
     }
+
+
 
 }

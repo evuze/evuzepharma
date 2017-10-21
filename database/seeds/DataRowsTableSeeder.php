@@ -778,7 +778,7 @@ class DataRowsTableSeeder extends Seeder
                 'delete'       => 1,
                 'details'      => json_encode([
                     'validation'    =>  [
-                        'rule'  =>  "min:2|max:7|unique:drugs,short_name"
+                        'rule'  =>  "min:2|max:10|unique:drugs,short_name"
                     ]
                 ]),
                 'order'        => 3,
@@ -1181,57 +1181,7 @@ class DataRowsTableSeeder extends Seeder
                 ]),
                 'order'        => 3,
             ])->save();
-        }
-
-        $dataRow = $this->dataRow($drugsPharmDataType, 'unit_id');
-        if (!$dataRow->exists) {
-            $dataRow->fill([
-                'type'         => 'select_dropdown',
-                'display_name' => 'Drug Unit',
-                'required'     => 1,
-                'browse'       => 1,
-                'read'         => 1,
-                'edit'         => 1,
-                'add'          => 1,
-                'delete'       => 1,
-                'details'      => json_encode([
-                    'validation' => [
-                        'rule'      =>  'required',
-                        'message'   =>  'Drug unit is required.'
-                    ],
-                    "relationship"  =>  [
-                        "key"   => "id",
-                        "label" => "name"
-                    ]
-                ]),
-                'order'        => 4,
-            ])->save();
-        }
-
-        $dataRow = $this->dataRow($drugsPharmDataType, 'strength_id');
-        if (!$dataRow->exists) {
-            $dataRow->fill([
-                'type'         => 'select_dropdown',
-                'display_name' => 'Drug Strength',
-                'required'     => 1,
-                'browse'       => 1,
-                'read'         => 1,
-                'edit'         => 1,
-                'add'          => 1,
-                'delete'       => 1,
-                'details'      => json_encode([
-                    'validation' => [
-                        'rule'      =>  'required',
-                        'message'   =>  'Drug strength is required.'
-                    ],
-                    "relationship"  =>  [
-                        "key"   => "id",
-                        "label" => "name"
-                    ]
-                ]),
-                'order'        => 5,
-            ])->save();
-        }
+        }        
 
         $dataRow = $this->dataRow($drugsPharmDataType, 'batch_number');
         if (!$dataRow->exists) {

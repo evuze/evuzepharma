@@ -9,6 +9,18 @@ class PharmDrug extends Model
 {
     use Uuid;
 
+
+    public function save(array $options = [])
+    {
+        if ( Auth::guard('pharmacy')->check() ){
+            // Forcing owner id to Pharmacy
+            $this->pharmacy_id = Auth::guard('pharmacy')->user()->pharmacy_id;
+        }
+
+        parent::save();
+    }
+
+
     /**
      * Voyager Relationship logic
      */
