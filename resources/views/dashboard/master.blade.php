@@ -205,7 +205,7 @@
 
 <!-- sparkline -->
 <script src="{{asset('dashboard/assets/sparkline-chart/jquery.sparkline.min.js')}}" type="text/javascript"></script>
-<script src="assets/sparkline-chart/chart-sparkline.js" type="text/javascript"></script>
+<script src="{{asset('dashboard/assets/sparkline-chart/chart-sparkline.js') }}" type="text/javascript"></script>
 
 <!-- sweet alerts -->
 <script src="{{asset('dashboard/assets/sweet-alert/sweet-alert.min.js')}}"></script>
@@ -215,7 +215,7 @@
 <!-- Chat -->
 <script src="{{asset('dashboard/js/jquery.chat.js')}}"></script>
 <!-- Dashboard -->
-<script src="{{asset('dashboard/js/jquery.dashboard.js')}}"></script>
+{{--  <script src="{{asset('dashboard/js/jquery.dashboard.js')}}"></script>  --}}
 
 <!-- Todo -->
 <script src="{{asset('dashboard/js/jquery.todo.js')}}"></script>

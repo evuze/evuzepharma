@@ -154,11 +154,11 @@
     @endif
     <script>
         $(document).ready(function () {
-                    @if (!$dataType->server_side)
+            @if (!$dataType->server_side)
             var table = $('#dataTable').DataTable({
-                        "order": []
-                        @if(config('dashboard.data_tables.responsive')), responsive: true @endif
-                    });
+                "order": []
+                @if(config('dashboard.data_tables.responsive')), responsive: true @endif
+            });
             @endif
 
             @if ($isModelTranslatable)
