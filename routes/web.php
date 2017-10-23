@@ -37,6 +37,8 @@ Route::group(['middleware' => 'pharmacy.auth', 'prefix' => 'pharmacy'], function
     Route::get('insurance/{id}/drugs', "InsurancesController@getSupportedDrugs")->name('get.insurance.drugs');
     
     Route::get('/drugs/import', "PharmacistController@importDrugs")->name('import.data.drugs');
+    Route::post('/drugs/import', "PharmacistController@importingDrugs")->name('import.drugs');
+
     Route::get('/drugs/export', "PharmacistController@exportDrugs")->name('export.format.drugs');
     Route::post('/drugs/export', "PharmacistController@exportingDrugs")->name('exportformat.drugs');
 

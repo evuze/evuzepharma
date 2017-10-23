@@ -23,9 +23,22 @@ class PharmacistController extends Controller
         return view('pharmacy.dashboard', compact('user'));
     }
 
-    public function importDrugs()
+    public function importDrugs(Request $request)
     {
-        return dd($this->user());
+        $dataType = Voyager::model('DataType')->where('slug', '=', 'drugs')->first();
+        return view('pharmacy.drugs.import', compact('dataType'));
+    }
+
+    public function importingDrugs(Request $request)
+    {
+        $this->validate($request, [
+            'file_import' => 'bail|required|mimes:xlsx',
+        ]);
+        
+        $path = $request->file('file_import')->getRealPath();
+
+        return dd($path);
+
     }
 
     public function exportDrugs(Request $request)
@@ -36,30 +49,61 @@ class PharmacistController extends Controller
     }
 
     public function exportingDrugs(Request $request)
-    {
-        $drugs = Drug::all(['short_name', 'full_name'])->take(5);
-        
+    {                
         $arrayToExport = [];
         //Column Title
         $arrayToExport[] = ['Drug Code', 'Drug Name', 'Drug Batch Number', 'Manufactured Date', 'Imported Date', 'Expiring Date', 'Quantity'];
-        if( $drugs != null ){
-            foreach ($drugs as $drug) {
-                $arrayToExport[] = [$drug->short_name,$drug->full_name];
-            }
-        }
+        
 
-        // Excel::create('drugEntryFormat', function($excel) use ($arrayToExport) {
-        //     $excel->setTitle('DrugEntryFormat');
-        //     $excel->setCreator('hirwaf')->setCompany('e-vuze');
-        //     $excel->setDescription('');
+        switch($request->input('options')){
+            case 1:
+                $drugs = Drug::all(['short_name', 'full_name']);
+                if( $drugs != null ){
+                    foreach ($drugs as $drug) {
+                        $arrayToExport[] = [$drug->short_name,$drug->full_name];
+                    }
+                }
+                if( count($arrayToExport) > 0 )
+                    $this->download($arrayToExport);
 
-        //     $excel->sheet('sheet1', function($sheet) use ($arrayToExport) {
-        //         $sheet->fromArray($arrayToExport, null, "A1", false, false);
-        //     });
+                break;
+            case 2:
+                break;
+            case 3:
+                $medecines = $request->input('medecine');
+                $drugs = Drug::whereIn('id', $medecines)->get(['short_name', 'full_name']);
+                
+                if( $drugs != null ){
+                    foreach ($drugs as $drug) {
+                        $arrayToExport[] = [$drug->short_name,$drug->full_name];
+                    }
+                }
 
-        // })->download('csv'); // xlsx
+                if( count($arrayToExport) > 0 )
+                    $this->download($arrayToExport);
+                
+                break;
+        };
 
-        return dd(getCurrentPharmacy()->id." ==== ".$this->user()->pharmacy->id);
+        return redirect()->back();
+    }
+
+    private function download($arrayToExport)
+    {
+        $date = date("Y-m-d", time());
+        $excel = Excel::create('drugEntryFormat_' . $date, function($excel) use ($arrayToExport) {
+            $date = date("Y-m-d", time());
+            $excel->setTitle('DrugEntryFormat-' . $date);
+            $excel->setCreator('hirwaf')->setCompany('e-vuze');
+            $excel->setDescription('');
+
+            $excel->sheet('sheet1', function($sheet) use ($arrayToExport) {
+                $sheet->fromArray($arrayToExport, null, "A1", false, false);
+            });
+
+        }); // xlsx
+
+        return $excel->download('xlsx');
     }
 
     public function getSlug(Request $request)

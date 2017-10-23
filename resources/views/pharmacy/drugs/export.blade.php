@@ -3,6 +3,11 @@
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('dashboard/assets/rcswitcher/css/rcswitcher.css') }}">
+    <style>
+        .dataTables_filter {
+            float: right;
+        }
+    </style>
 @stop
 
 @section('content-bread')

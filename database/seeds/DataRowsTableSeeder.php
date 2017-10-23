@@ -1204,6 +1204,48 @@ class DataRowsTableSeeder extends Seeder
             ])->save();
         }
 
+        $dataRow = $this->dataRow($drugsPharmDataType, 'init_quantity');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'Quantity',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => json_encode([
+                    'validation' => [
+                        'rule'      =>  'required',
+                        'message'   =>  'Drugs quantity is required.'
+                    ]
+                ]),
+                'order'        => 7,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($drugsPharmDataType, 'supplier');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'text',
+                'display_name' => 'Supplier',
+                'required'     => 1,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => json_encode([
+                    'validation' => [
+                        'rule'      =>  'required',
+                        'message'   =>  'Drugs supplier is required.'
+                    ]
+                ]),
+                'order'        => 8,
+            ])->save();
+        }
+
         $dataRow = $this->dataRow($drugsPharmDataType, 'manufactured_date');
         if (!$dataRow->exists) {
             $dataRow->fill([
@@ -1220,7 +1262,7 @@ class DataRowsTableSeeder extends Seeder
                         'rule'      =>  'required|date|before:tomorrow'
                     ]
                 ]),
-                'order'        => 7,
+                'order'        => 9,
             ])->save();
         }
 
@@ -1240,7 +1282,7 @@ class DataRowsTableSeeder extends Seeder
                         'rule'      =>  'required|date|after:manufactured_date'
                     ]
                 ]),
-                'order'        => 8,
+                'order'        => 10,
             ])->save();
         }
 
@@ -1260,7 +1302,7 @@ class DataRowsTableSeeder extends Seeder
                         'rule'      =>  'required|date|after:import_date'
                     ]
                 ]),
-                'order'        => 9,
+                'order'        => 11,
             ])->save();
         }
 
@@ -1280,7 +1322,7 @@ class DataRowsTableSeeder extends Seeder
                         'rule'      =>  'min:5'
                     ]
                 ]),
-                'order'        => 10,
+                'order'        => 12,
             ])->save();
         }
         $dataRow = $this->dataRow($drugsPharmDataType, 'created_at');
@@ -1295,7 +1337,7 @@ class DataRowsTableSeeder extends Seeder
                 'add'          => 0,
                 'delete'       => 0,
                 'details'      => '',
-                'order'        => 20,
+                'order'        => 13,
             ])->save();
         }
 
@@ -1311,7 +1353,7 @@ class DataRowsTableSeeder extends Seeder
                 'add'          => 0,
                 'delete'       => 0,
                 'details'      => '',
-                'order'        => 21,
+                'order'        => 14,
             ])->save();
         }
 
