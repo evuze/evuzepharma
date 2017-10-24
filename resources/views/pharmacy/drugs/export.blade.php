@@ -50,7 +50,13 @@
                                 <div class="radio">
                                     <label>
                                         <input type="radio" name="options" id="optionsRadios2" value="2" data-toggle="radio" >
-                                        All less 30% in store
+                                        All less 35% in store
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="options" id="optionsRadios4" value="4" data-toggle="radio" >
+                                        All expired
                                     </label>
                                 </div>
                                 <div class="radio">
@@ -122,7 +128,8 @@
         $('document').ready(function () {
             // Checkboxes and Radio buttons
             var table = $('#dataTable').DataTable({
-                "order": [], 
+                "order": [],
+                pageLength: 5,
                 responsive: true
             });
             var countChecked = function($table, checkboxClass) {
@@ -134,13 +141,15 @@
                                         .find(checkboxClass);
 
                     // Count checked checkboxes
+                    var bo = chkAll.filter(':checked');
                     var checked = chkAll.filter(':checked').length;
                     // Count total
                     var total = chkAll.length;    
                     // Return an object with total and checked values
                     return {
                         total: total,
-                        checked: checked
+                        checked: checked,
+                        checkboxs: bo
                     }
                 }
             }
@@ -160,6 +169,25 @@
                     $(document).on('change', '.thebox', function() {
                         var result = countChecked(table, '.thebox');
                         bp.find('span').text(result.checked + " - "+ result.total);
+                    });
+                    $("form").submit(function(e) {
+                        var form = this;
+                        var result = countChecked(table, '.thebox');
+                        params = result.checkboxs.serializeArray();
+                        // Iterate over all form elements
+                        $.each(params, function(){
+                            // If element doesn't exist in DOM
+                            if(!$.contains(document, form[this.name])){
+                                // Create a hidden element
+                                $(form).append(
+                                $('<input>')
+                                    .attr('type', 'hidden')
+                                    .attr('name', this.name)
+                                    .val(this.value)
+                                );
+                            }
+                        });
+                        console.log(params);
                     });
 
                 }else{
