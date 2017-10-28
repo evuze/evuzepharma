@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOwnersTable extends Migration
+class CreatePurchasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,16 @@ class CreateOwnersTable extends Migration
      */
     public function up()
     {
-        Schema::create('owners', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string("name");
+            
+            $table->uuid("pharmacy_id");
+            $table->uuid("drug_id");
+            $table->uuid("employee_id");
+
+            $table->integer('quantity')->default(0);
+            $table->integer('price')->default(0);
+            $table->string("supplier")->nullable();
 
             $table->primary('id');
             $table->softDeletes();
@@ -30,6 +37,6 @@ class CreateOwnersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('owners');
+        Schema::dropIfExists('purchases');
     }
 }

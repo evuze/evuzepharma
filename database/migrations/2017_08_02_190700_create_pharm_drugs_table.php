@@ -15,8 +15,10 @@ class CreatePharmDrugsTable extends Migration
     {
         Schema::create('pharm_drugs', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('pharmacy_id');
-            $table->integer("drug_id")->unsigned();
+            
+            $table->uuid('pharmacy_id');
+            $table->uuid("drug_id");
+
             $table->integer("unit_id")->unsigned();
             $table->integer("strength_id")->unsigned();
             $table->string("batch_number", 200)->nullable();

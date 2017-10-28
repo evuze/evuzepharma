@@ -14,7 +14,7 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
@@ -23,6 +23,8 @@ class CreateEmployeesTable extends Migration
 
             $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
 
+            $table->primary('id');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

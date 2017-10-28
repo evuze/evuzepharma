@@ -5,11 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Models\DataType;
 use TCG\Voyager\Models\DataRow;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kblais\Uuid\Uuid;
 
 class PharmDrug extends Model
 {
     use Uuid;
+    use SoftDeletes;
 
     private static $headerExcelExport = [
         'drug_code' =>  'Drug Code', 
@@ -19,7 +21,8 @@ class PharmDrug extends Model
         'imported_date' =>  'Imported Date', 
         'expiring_date' =>  'Expiring Date',
         'quantity' =>  'Quantity',
-        'supplier' =>  'Supplier', 
+        'price' =>  'Price',
+        'supplier' =>  'Supplier',
         'comment' =>  'Comment'
     ];
 
@@ -31,6 +34,7 @@ class PharmDrug extends Model
         'imported_date' =>  'import_date',
         'expiring_date' =>  'expiring_date',
         'quantity' =>  'init_quantity',
+        'price' =>  'price',
         'supplier' =>  'supplier',
         'comment' =>  'comment'        
     ];

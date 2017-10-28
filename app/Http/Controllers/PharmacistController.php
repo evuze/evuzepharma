@@ -7,6 +7,7 @@ use TCG\Voyager\Facades\Voyager;
 use Excel;
 use App\Drug;
 use App\PharmDrug;
+use App\Purchase;
 
 class PharmacistController extends Controller
 {
@@ -64,23 +65,6 @@ class PharmacistController extends Controller
         }
 
         /**
-         * Validation items
-         */
-        // if( count($modifiedKey) > 0 ){            
-        //     foreach($modifiedKey as $on => $rows){
-        //         $item_ = [];
-        //         foreach($rows as $key => $value) {
-        //             foreach(PharmDrug::headerExcelExportValidate() as $item){
-        //                 if( $item == $key )
-        //                     $item_[$key] = $value;
-        //             }                    
-        //         }
-        //         if( ! empty($item_) )
-        //             $toValidate[$on] = $item_;
-        //     }
-        // }
-
-        /**
          * Validating
          */
 
@@ -89,9 +73,46 @@ class PharmacistController extends Controller
         $validation = $this->dataValidate($modifiedKey, $rules['rules'], $rules['messages']);
         
         if($validation != 0 ){
-            return dd($validation);
+            session()->flash('import_error', $validation);
+            return redirect()->route('import.data.drugs');
         }
-        
+
+        /**
+         * Saving imported data
+         */
+
+        $user = getCurrentUser()->id;
+        $modifiedKey = json_decode(json_encode($modifiedKey , JSON_FORCE_OBJECT));
+
+        foreach($modifiedKey as $row => $data){
+                $drug_exist = false;
+                $drug = Drug::where("short_name", $data->short_name);
+                if($drug->count() > 0) {
+                    $drug = $drug->first();
+                    $drug_exist = true;
+                }
+                if( $drug_exist ){                    
+                    
+                    /**
+                     * Saving into Purchase Model
+                     */
+
+                    $purchase = new Purchase();
+                    $purchase->drug_id = $drug->id;
+                    $purchase->quantity = $data->init_quantity;
+                    $purchase->price = $data->price;
+                    $purchase->supplier = $data->supplier;
+                    $purchase->save();
+
+                    /**
+                     * Saving into PharmDrug Model
+                     */
+                    
+                     
+                    
+                }
+        }
+
         return dd($modifiedKey);
 
     }

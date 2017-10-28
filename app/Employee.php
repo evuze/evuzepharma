@@ -4,11 +4,15 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Kblais\Uuid\Uuid;
 
 class Employee extends Authenticatable
 {
 
     use Notifiable;
+    use SoftDeletes;
+    use Uuid;
 
     protected $hidden = [
         'password', 'remember_token',

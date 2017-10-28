@@ -5,7 +5,7 @@
 
 @section('content-bread')
     <div class="panel">
-         @if (count($errors) > 0)
+        @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -14,6 +14,22 @@
                 </ul>
             </div>
         @endif
+
+        @if( session()->has('import_error') )
+            @php
+                $errors = session()->get('import_error');
+            @endphp
+            @if( is_array($errors) )
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors['rows'] as $key => $row)
+                            <li>Error on row <u><b>{{ $row }}</b></u> : {{ $errors['errors'][$key] }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        @endif
+
         <form role="form"
               class="form-edit-add"
               action="{{ route('import.drugs') }}"
