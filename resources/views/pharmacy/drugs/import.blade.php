@@ -30,6 +30,21 @@
             @endif
         @endif
 
+        @if( session()->has('import_error_duplicate') )
+            @php
+                $errors = session()->get('import_error');
+            @endphp
+            @if( is_array($errors) )
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors as $row)
+                            <li>Error: Duplicate on <u><b>{{ $row }}</b></u></li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        @endif
+
         <form role="form"
               class="form-edit-add"
               action="{{ route('import.drugs') }}"

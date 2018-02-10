@@ -84,6 +84,9 @@ class PharmacistController extends Controller
         $user = getCurrentUser()->id;
         $modifiedKey = json_decode(json_encode($modifiedKey , JSON_FORCE_OBJECT));
 
+        //Check duplicated rows
+        $this->checkduplicate($modifiedKey);
+
         foreach($modifiedKey as $row => $data){
                 $drug_exist = false;
                 $drug = Drug::where("short_name", $data->short_name);
@@ -100,6 +103,7 @@ class PharmacistController extends Controller
                     $purchase = new Purchase();
                     $purchase->drug_id = $drug->id;
                     $purchase->quantity = $data->init_quantity;
+                    $purchase->batch_number = $data->batch_number;
                     $purchase->price = $data->price;
                     $purchase->supplier = $data->supplier;
                     $purchase->save();
@@ -108,13 +112,40 @@ class PharmacistController extends Controller
                      * Saving into PharmDrug Model
                      */
                     
-                     
+                    $checkIfExist = PharmDrug::where('batch_number', $data->batch_number);
+                    if($checkIfExist->count() > 0){
+                        $pdrug = $checkIfExist->first();
+                    }
+
                     
                 }
         }
 
         return dd($modifiedKey);
 
+    }
+
+    protected function checkduplicate($data)
+    {
+        $duplicate = [];
+        if($data){
+            foreach($data as $row => $value) {
+               foreach($data as $rowc => $valuec) {
+                   if($row != $rowc) {
+                        $v = json_decode($value);
+                        $vc = json_decode($valuec);
+                        $arrayIntersect = array_intersect($v, $vc);
+                        if( count($arrayIntersect) > 0 )
+                            $duplicate[] = ['rows' => $row." and ".$rowc ];
+                   }
+               }
+            }
+        }
+
+        if( count($duplicate) > 0 ){
+            session()->flash('import_error_duplicate', $validation);
+            return redirect()->route('import.data.drugs');
+        }
     }
 
     public function exportDrugs(Request $request)
