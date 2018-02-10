@@ -25,7 +25,7 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Description',
-                'value'        => 'Site Description',
+                'value'        => 'pharmacy system',
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 2,
@@ -58,7 +58,11 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Title',
+<<<<<<< HEAD
                 'value'        => 'Evuze Pharmacy',
+=======
+                'value'        => 'Evuze',
+>>>>>>> 44b525928d7d7ba25741861d30535884db46b659
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 4,
@@ -69,7 +73,11 @@ class SettingsTableSeeder extends Seeder
         if (!$setting->exists) {
             $setting->fill([
                 'display_name' => 'Admin Description',
+<<<<<<< HEAD
                 'value'        => 'Welcome evuze pharmacy',
+=======
+                'value'        => 'Welcome to Evuze Pharma',
+>>>>>>> 44b525928d7d7ba25741861d30535884db46b659
                 'details'      => '',
                 'type'         => 'text',
                 'order'        => 5,

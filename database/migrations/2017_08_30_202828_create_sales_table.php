@@ -15,13 +15,13 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->uuid('id'); //uuid as id
-            $table->string('particulars');
-            $table->string('vch_type'); //Voucher Type
-            $table->string('vch_no'); // Voucher No (incremental)
-            $table->string('amount_dbt'); //amount debit
-            $table->string('amount_cdt');// amount credit
+            $table->string('drug_id');
+            $table->string('customer_id'); 
+            $table->string('unitprice'); 
+            $table->string('quantity'); 
+            $table->string('total');
+            $table->softDeletes();
             $table->timestamps();
-
             //setting primary key
             $table->primary('id');
         });

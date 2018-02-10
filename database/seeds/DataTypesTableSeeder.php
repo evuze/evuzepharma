@@ -154,6 +154,7 @@ class DataTypesTableSeeder extends Seeder
                 'description'           => '',
             ])->save();
         }
+<<<<<<< HEAD
 
         $dataType = $this->dataType('slug', 'insurances');
         if (!$dataType->exists) {
@@ -165,10 +166,23 @@ class DataTypesTableSeeder extends Seeder
                 'model_name'            => 'App\\Insurance',
                 'controller'            => '',
                 'generate_permissions'  => 1,
+=======
+        $dataType = $this->dataType('slug', 'sales');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'Sales',
+                'display_name_singular' => 'sale',
+                'display_name_plural'   => 'sales',
+                'icon'                  => 'voyager-bag',
+                'model_name'            => 'App\\Sales',
+                'controller'            => '\\App\\Http\\Controllers\\SalesController',
+                'generate_permissions'  => 0,
+>>>>>>> 44b525928d7d7ba25741861d30535884db46b659
                 'description'           => '',
             ])->save();
         }
 
+<<<<<<< HEAD
         $dataType = $this->dataType('slug', 'pharmacy-insurances');
         if (!$dataType->exists) {
             $dataType->fill([
@@ -178,10 +192,25 @@ class DataTypesTableSeeder extends Seeder
                 'icon'                  => 'voyager-umbrella',
                 'model_name'            => 'App\\PharmInsurance',
                 'controller'            => '\\App\\Http\\Controllers\\InsurancesController',
+=======
+        $dataType = $this->dataType('slug', 'customer');
+        if (!$dataType->exists) {
+            $dataType->fill([
+                'name'                  => 'Customer',
+                'display_name_singular' => 'customer',
+                'display_name_plural'   => 'customers',
+                'icon'                  => 'voyager-person',
+                'model_name'            => 'App\\Customer',
+                'controller'            => '\\App\\Http\\Controllers\\SalesController',
+>>>>>>> 44b525928d7d7ba25741861d30535884db46b659
                 'generate_permissions'  => 0,
                 'description'           => '',
             ])->save();
         }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 44b525928d7d7ba25741861d30535884db46b659
     }
 
     /**

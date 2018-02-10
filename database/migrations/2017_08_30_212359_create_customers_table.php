@@ -11,14 +11,20 @@ class CreateCustomersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up()    
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->uuid('id'); // uui as id
             $table->string('names');
             $table->string('sex');
-            $table->string('address');
-            $table->string('phone');
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('dob')->nullable();
+            $table->string('weight')->nullable();
+            $table->longText('illness')->nullable();
+            $table->string('nameofprincipal')->nullable();
+            $table->string('cardnumber')->nullable();
+            $table->string('medicalcenter')->nullable();
             $table->integer('insurance_id')->unsigned();
             $table->timestamps();
 

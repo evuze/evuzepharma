@@ -27,9 +27,7 @@ class BreadController extends Controller
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
         // Check permission
-//         Voyager::canOrFail('browse_'.$dataType->name);
-
-
+        // Voyager::canOrFail('browse_'.$dataType->name);
         $getter = $dataType->server_side ? 'paginate' : 'get';
 
         // Next Get or Paginate the actual content from the MODEL that corresponds to the slug DataType
