@@ -14,6 +14,8 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "maatwebsite/excel": "~2.1.0",
+        "predis/predis": "^1.1",
+        "shipping-docker/vessel": "^2.1",
         "tcg/voyager": "^0.11.14",
         "whoops/soap": "^1.0"
     },
