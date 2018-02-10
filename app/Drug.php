@@ -10,6 +10,8 @@ class Drug extends Model
 {
     use Uuid;    
     use SoftDeletes;
+    use Uuid;
+    
     protected $fillable = [
         'full_name', 'short_name', 'details'
     ];

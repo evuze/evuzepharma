@@ -40,6 +40,23 @@ if ( !function_exists('getDrugsNumber')  ) {
     }
 }
 
+if ( !function_exists('getMyStoke')  ) {
+    function getMyStoke()
+    {
+        $stoke = \App\PharmDrug::where('pharmacy_id', getCurrentPharmacy()->id);
+
+        return $stoke->get();
+    }
+}
+
+if( ! function_exists("getExpiredDrugs") )
+{
+    function getExpiredDrugs()
+    {
+        $stoke = \App\PharmDrug::where('pharmacy_id', getCurrentPharmacy()->id);
+    }
+}
+
 if ( ! function_exists('getPharmacyMenus') ) {
     function getPharmacyMenus($slug)
     {
@@ -120,5 +137,15 @@ if( ! function_exists("getInsuranceFrom") ) {
             return $find;
 
         return null;
+    }
+}
+
+if(! function_exists("percentaging") ) {
+    function percentaging($x=0, $t=0){
+        $formula = 0;
+        if( $t > 0 )
+            $formula = ($x * 100) / $t;
+
+        return $formula;
     }
 }

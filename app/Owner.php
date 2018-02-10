@@ -2,10 +2,15 @@
 
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Kblais\Uuid\Uuid;
 use TCG\Voyager\Models\Role;
 
 class Owner extends Model
 {
+    //
+    use Uuid;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
