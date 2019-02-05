@@ -25,14 +25,12 @@ class DataRowsTableSeeder extends Seeder
          * DataRowForPharmacy
          */
 
-<<<<<<< HEAD
         $drugsPharmDataType = DataType::where('slug', 'drugs')->firstOrFail();
         $insurancePharmDataType = DataType::where('slug', 'pharmacy-insurances')->firstOrFail();
-=======
+
         $drugsPharmDataType    = DataType::where('slug', 'drugs')->firstOrFail();
         $salesPharmDataType    = DataType::where('slug','sales')->firstOrFail();
         $customerPharmDataType = DataType::where('slug','customer')->firstOrFail();
->>>>>>> 44b525928d7d7ba25741861d30535884db46b659
 
         /**
          * DataRow for Owners Table

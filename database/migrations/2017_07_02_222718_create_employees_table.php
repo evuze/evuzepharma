@@ -13,21 +13,23 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+        if (!Schema::hasTable('employees')) {
+            Schema::create('employees', function (Blueprint $table) {
+                $table->uuid('id');
+                $table->string('name');
+                $table->string('email')->unique();
+                $table->string('password');
 
-            $table->uuid('pharmacy_id');
+                $table->uuid('pharmacy_id');
 
-            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
+//            $table->foreign('pharmacy_id')->references('id')->on('pharmacies')->onDelete('cascade');
 
-            $table->primary('id');
-            $table->softDeletes();
-            $table->rememberToken();
-            $table->timestamps();
-        });
+                $table->primary('id');
+                $table->softDeletes();
+                $table->rememberToken();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
