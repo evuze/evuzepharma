@@ -12,7 +12,7 @@ class CreateMenuTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('users')) {
+        if (!Schema::hasTable('menus')) {
             Schema::create('menus', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name')->unique();
